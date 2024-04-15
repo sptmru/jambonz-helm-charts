@@ -27,8 +27,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.33.tgz
     version: 0.1.33
@@ -58,8 +58,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.32.tgz
     version: 0.1.32
@@ -89,8 +89,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.31.tgz
     version: 0.1.31
@@ -120,8 +120,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.30.tgz
     version: 0.1.30
@@ -151,8 +151,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.29.tgz
     version: 0.1.29
@@ -182,8 +182,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.28.tgz
     version: 0.1.28
@@ -213,8 +213,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.27.tgz
     version: 0.1.27
@@ -244,8 +244,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.26.tgz
     version: 0.1.26
@@ -275,8 +275,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.25.tgz
     version: 0.1.25
@@ -306,8 +306,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.24.tgz
     version: 0.1.24
@@ -337,8 +337,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.23.tgz
     version: 0.1.23
@@ -368,8 +368,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.22.tgz
     version: 0.1.22
@@ -399,8 +399,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.21.tgz
     version: 0.1.21
@@ -430,8 +430,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.20.tgz
     version: 0.1.20
@@ -461,8 +461,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.19.tgz
     version: 0.1.19
@@ -492,8 +492,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.18.tgz
     version: 0.1.18
@@ -523,8 +523,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.17.tgz
     version: 0.1.17
@@ -554,8 +554,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.9.tgz
     version: 0.1.9
@@ -585,8 +585,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.8.tgz
     version: 0.1.8
@@ -616,8 +616,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.7.tgz
     version: 0.1.7
@@ -647,8 +647,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.6.tgz
     version: 0.1.6
@@ -678,8 +678,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.5.tgz
     version: 0.1.5
@@ -709,8 +709,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.4.tgz
     version: 0.1.4
@@ -740,8 +740,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.2.tgz
     version: 0.1.2
@@ -771,8 +771,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.1.tgz
     version: 0.1.1
@@ -801,8 +801,8 @@ entries:
       name: Dave Horton
     name: jambonz
     sources:
-    - https://github.com/jambonz/helm-charts
-    - https://github.com/jambonz/jambonz-infrastructure
+    - https://github.com/sptmru/jambonz-helm-charts
+    - https://github.com/sptmru/jambonz-infrastructure
     urls:
     - jambonz-0.1.0.tgz
     version: 0.1.0
