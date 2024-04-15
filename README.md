@@ -4,7 +4,7 @@
 To add this Helm chart repository to your Helm client:
 
 ```bash
-helm repo add jambonz https://jambonz.github.io/helm-charts/
+helm repo add jambonz https://sptm.space/jambonz-helm-charts/
 ```
 
 Having installed it, you can list its charts, of which there is just one:
