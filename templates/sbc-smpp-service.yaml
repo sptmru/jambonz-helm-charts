@@ -9,8 +9,8 @@ metadata:
 spec:
   ports:
     - name: smpp
-      port: 2280
-      targetPort: 2280
+      port: 80
+      targetPort: 80
       protocol: TCP
   selector:
     app: jambonz-sbc-sip

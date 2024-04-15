@@ -9,8 +9,8 @@ metadata:
 spec:
   ports:
     - name: homer-webapp
-      port: 2280
-      targetPort: 2280
+      port: 80
+      targetPort: 80
   type: NodePort
   selector:
     app: homer-webapp

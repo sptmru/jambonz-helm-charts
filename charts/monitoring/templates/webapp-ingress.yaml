@@ -15,7 +15,7 @@ spec:
             service:
               name: homer-webapp
               port: 
-                number: 2280
+                number: 80
           path: /
           pathType: Prefix
 {{- end}}

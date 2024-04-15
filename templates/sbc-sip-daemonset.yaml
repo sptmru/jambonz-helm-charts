@@ -201,7 +201,7 @@ spec:
             - name: K8S 
               value: "1"
             - name: HTTP_PORT 
-              value: "2280"
+              value: "80"
             - name: AVOID_UDH 
               value: "1"
             - name: JAMBONES_REDIS_HOST
@@ -228,7 +228,7 @@ spec:
                   key: DRACHTIO_SECRET
           ports:
             - name: http
-              containerPort: 2280
+              containerPort: 80
               protocol: TCP
       restartPolicy: Always
       volumes:

@@ -45,7 +45,7 @@ spec:
               service:
                 name: homer-webapp
                 port:
-                  number: 2280
+                  number: 80
       {{- if .Values.global.kong.useHostnames }}
       host: {{ required "hostname for Homer" .Values.homer.hostname }}
       {{- end}}
