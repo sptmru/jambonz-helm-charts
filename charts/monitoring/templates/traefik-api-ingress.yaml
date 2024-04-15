@@ -43,7 +43,7 @@ spec:
               service:
                 name: homer-webapp
                 port:
-                  number: 80
+                  number: 2280
       {{- if .Values.global.traefik.useHostnames }}
       host: {{ required "hostname for Homer" .Values.homer.hostname }}
       {{- end}}
