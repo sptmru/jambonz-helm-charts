@@ -67,16 +67,16 @@ sbc:
   sip: 
     nodeSelector: 
       label: voip-environment 
-      value: sip
-    toleration: sip
+      value: oneserver
+    toleration: oneserver
     podAnnotations:
     ssl:
       enabled: false
   rtp: 
     nodeSelector: 
       label: voip-environment 
-      value: rtp
-    toleration: rtp
+      value: oneserver
+    toleration: oneserver
     podAnnotations:
     storageClassName:
     # list of extra initContainers
