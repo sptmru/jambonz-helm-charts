@@ -1,6 +1,6 @@
 grafana: 
   image: grafana/grafana-oss:8.4.3 
-  hostname:
+  hostname: grafana.jambonz.sptm.space
   storage: 2Gi
   podAnnotations:
 heplifyServer: 
@@ -18,7 +18,7 @@ cassandra:
   podAnnotations:
 homer: 
   image: sipcapture/webapp:latest
-  hostname:
+  hostname: homer.jambonz.sptm.space
   podAnnotations:
 postgres: 
   image: postgres:11-alpine

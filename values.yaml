@@ -8,11 +8,11 @@ global:
     namespace:
     createNamespace: false
   kong:
-    enabled: false
+    enabled: true
     useHostnames: true
     tls:
-      enabled: false
-      clusterIssuer: 
+      enabled: true
+      clusterIssuer: letsencrypt-prod
   traefik:
     enabled: false
     useHostnames: true
@@ -158,10 +158,8 @@ api:
   replicas: 1
   podAnnotations:
   # (required) hostname for the jambonz port ingress
-  hostname:
-  # defaults to http, if you have tls enabled change to https 
-  # otherwise web to api connection will fail
-  protocol:
+  hostname: api.jambonz.sptm.space
+  protocol: https
 
 # jambonz-webapp configuration
 webapp: 
@@ -171,7 +169,7 @@ webapp:
   podAnnotations:
   
   # (required) hostname for the jambonz port ingress
-  hostname: webapp.jambonz.xyz
+  hostname: webapp.jambonz.sptm.space
 
   # set to true to disable recording in the portal
   disableRecording: false 
