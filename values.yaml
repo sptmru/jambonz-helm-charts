@@ -8,17 +8,17 @@ global:
     namespace:
     createNamespace: false
   kong:
+    enabled: false
+    useHostnames: true
+    tls:
+      enabled: false
+      clusterIssuer:
+  traefik:
     enabled: true
     useHostnames: true
     tls:
       enabled: true
       clusterIssuer: letsencrypt-prod
-  traefik:
-    enabled: false
-    useHostnames: true
-    tls:
-      enabled: false
-      clusterIssuer: 
   cassandra:
     enabled: true
   recordings:
