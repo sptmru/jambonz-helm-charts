@@ -19,6 +19,10 @@ global:
     tls:
       enabled: false
       clusterIssuer:
+  nginx:
+    tls:
+      enabled: true
+      clusterIssuer: letsencrypt-prod
   cassandra:
     enabled: true
   recordings:
