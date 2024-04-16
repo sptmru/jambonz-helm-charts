@@ -14,11 +14,11 @@ global:
       enabled: false
       clusterIssuer:
   traefik:
-    enabled: true
+    enabled: false
     useHostnames: true
     tls:
-      enabled: true
-      clusterIssuer: letsencrypt-prod
+      enabled: false
+      clusterIssuer:
   cassandra:
     enabled: true
   recordings:
