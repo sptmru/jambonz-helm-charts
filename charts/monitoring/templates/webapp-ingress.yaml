@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: homer-webapp
   namespace: {{ dig "global" "monitoring" "namespace" .Release.Namespace (.Values | merge (dict)) | quote }}
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.global.nginx.tls.clusterIssuer }}
   labels:
 {{ include "common.labels" . | indent 4 }}
 spec:
