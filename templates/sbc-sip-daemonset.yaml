@@ -30,10 +30,6 @@ spec:
         {{ .Values.sbc.sip.nodeSelector.label }}: {{.Values.sbc.sip.nodeSelector.value | quote }}
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-      tolerations:
-        - key: {{ .Values.sbc.sip.toleration | quote }}
-          operator: "Exists"
-          effect: "NoSchedule"
       initContainers:
         - image: kanisterio/mysql-sidecar:0.40.0
           name: db-create-wait

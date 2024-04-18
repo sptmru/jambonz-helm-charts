@@ -72,7 +72,7 @@ sbc:
     nodeSelector: 
       label: voip-environment 
       value: oneserver
-    toleration: oneserver
+    # toleration: oneserver
     podAnnotations:
     ssl:
       enabled: true
@@ -80,7 +80,7 @@ sbc:
     nodeSelector: 
       label: voip-environment 
       value: oneserver
-    toleration: oneserver
+    # toleration: oneserver
     podAnnotations:
     storageClassName:
     # list of extra initContainers
