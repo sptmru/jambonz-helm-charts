@@ -75,7 +75,7 @@ sbc:
     # toleration: oneserver
     podAnnotations:
     ssl:
-      enabled: true
+      enabled: false
   rtp: 
     nodeSelector: 
       label: voip-environment 
