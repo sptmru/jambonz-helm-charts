@@ -53,7 +53,6 @@ spec:
             - drachtio
             - --loglevel
             - {{ .Values.sbcSip.loglevel }}
-            - --cloud-deployment
             - --sofia-loglevel
             - {{ .Values.sbcSip.sofiaLoglevel | quote }}
             - --homer
