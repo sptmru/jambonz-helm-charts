@@ -155,7 +155,7 @@ api:
   podAnnotations:
   # (required) hostname for the jambonz port ingress
   hostname: api.jambonz.sptm.space
-  protocol: http
+  protocol: https
 
 # jambonz-webapp configuration
 webapp: 
