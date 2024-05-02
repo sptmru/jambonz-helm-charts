@@ -69,18 +69,10 @@ jambonz:
 #   (But, for production deployments, separate nodepools are recommended for sip and rtp, and this is the default setup below).
 sbc: 
   sip: 
-    nodeSelector: 
-      label: voip-environment 
-      value: oneserver
-    # toleration: oneserver
     podAnnotations:
     ssl:
       enabled: false
   rtp: 
-    nodeSelector: 
-      label: voip-environment 
-      value: oneserver
-    # toleration: oneserver
     podAnnotations:
     storageClassName:
     # list of extra initContainers
@@ -163,7 +155,7 @@ api:
   podAnnotations:
   # (required) hostname for the jambonz port ingress
   hostname: api.jambonz.sptm.space
-  protocol: https
+  protocol: http
 
 # jambonz-webapp configuration
 webapp: 
