@@ -128,19 +128,31 @@ spec:
                 secretKeyRef:
                   name: jambonz-secrets
                   key: DRACHTIO_SECRET
-          {{- if .Values.global.recordings.enabled }}
           volumeMounts:
+            - name: rtpengineentrypoint
+              mountPath: /newentrypoint.sh
+              subPath: entrypoint.sh
+          {{- if .Values.global.recordings.enabled }}
             - mountPath: {{ .Values.rtpengine.recordings.dir | quote }}
               name: recordings
           {{- end }}
+          command:
+            - bash
+            - /newentrypoint.sh
           ports:
             - containerPort: 22222
               protocol: TCP
 {{- if .Values.sbc.rtp.extraContainers }}
 {{ toYaml .Values.sbc.rtp.extraContainers | default "" | nindent 8 }}
 {{- end }}
-      {{- if .Values.global.recordings.enabled }}
       volumes:
+      - name: rtpengineentrypoint
+          configMap:
+            name: rtpengineentrypoint
+            items:
+              - key: entrypoint.sh
+                path: entrypoint.sh
+      {{- if .Values.global.recordings.enabled }}
       - name: recordings
         persistentVolumeClaim:
           claimName: {{ .Values.rtpengine.recordings.pvc | quote }}
