@@ -13,7 +13,7 @@ spec:
   tls:
   - hosts:
     - {{ .Values.api.hostname }}
-    secretName: jambonz-webapp-tls
+    secretName: jambonz-api-tls
 {{- end}}
   rules:
     - host: {{ required "hostname for the REST API" .Values.api.hostname }}

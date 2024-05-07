@@ -13,7 +13,7 @@ spec:
   tls:
   - hosts:
     - {{ .Values.homer.hostname }}
-    secretName: jambonz-webapp-tls
+    secretName: jambonz-homer-tls
 {{- end}}
   rules:
     - host: {{ required "hostname for the homer portal" .Values.homer.hostname }}
