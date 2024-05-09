@@ -114,7 +114,7 @@ rtpengine:
 
 # used by sidecar apps in sbc-sip and feature-server to connect locally to drachtio server
 drachtio: 
-  image: drachtio/drachtio-server:0.8.24
+  image: drachtio/drachtio-server:0.8.25
   imagePullPolicy: IfNotPresent
   host: "127.0.0.1"
   port: "9022"
@@ -123,7 +123,7 @@ drachtio:
 
 # freeswitch configuration
 freeswitch: 
-  image: drachtio/drachtio-freeswitch-mrf:0.5.6
+  image: drachtio/drachtio-freeswitch-mrf:0.9.0
   imagePullPolicy: IfNotPresent
   args:
     - freeswitch
@@ -148,7 +148,7 @@ redis:
 
 # configuration for jambonz-api-server
 api: 
-  image: jambonz/api-server:0.8.5
+  image: jambonz/api-server:0.9.0
   imagePullPolicy: Always
   httpPort: "3000"
   replicas: 1
@@ -177,7 +177,7 @@ smpp:
 
 # sbc-inbound configuration
 sbcInbound: 
-  image: jambonz/sbc-inbound:0.8.5
+  image: jambonz/sbc-inbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
   replicas: 1
@@ -185,7 +185,7 @@ sbcInbound:
 
 # sbc-outbound configuration
 sbcOutbound: 
-  image: jambonz/sbc-outbound:0.8.5
+  image: jambonz/sbc-outbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
   replicas: 1
@@ -193,19 +193,19 @@ sbcOutbound:
 
 # sbc-sip-sidecar configuration
 sbcSipSidecar:
-  image: jambonz/sbc-sip-sidecar:0.8.5
+  image: jambonz/sbc-sip-sidecar:0.9.0
   imagePullPolicy: IfNotPresent
 
 # sbc-call-router configuration
 sbcCallRouter: 
-  image: jambonz/sbc-call-router:0.8.5
+  image: jambonz/sbc-call-router:0.9.0
   imagePullPolicy: IfNotPresent
   httpPort: "3000"
   replicas: 1
 
 # feature-server configuration
 featureServer: 
-  image: jambonz/feature-server:0.8.5-rc20
+  image: jambonz/feature-server:0.9.0
   imagePullPolicy: IfNotPresent
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
