@@ -21,7 +21,7 @@ global:
       clusterIssuer:
   nginx:
     tls:
-      enabled: false
+      enabled: true
       clusterIssuer: letsencrypt-prod
   cassandra:
     enabled: true
