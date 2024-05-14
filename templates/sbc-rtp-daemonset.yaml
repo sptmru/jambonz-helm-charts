@@ -147,11 +147,11 @@ spec:
 {{- end }}
       volumes:
       - name: rtpengineentrypoint
-          configMap:
-            name: rtpengineentrypoint
-            items:
-              - key: entrypoint.sh
-                path: entrypoint.sh
+        configMap:
+          name: rtpengineentrypoint
+          items:
+            - key: entrypoint.sh
+              path: entrypoint.sh
       {{- if .Values.global.recordings.enabled }}
       - name: recordings
         persistentVolumeClaim:
