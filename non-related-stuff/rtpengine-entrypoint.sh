@@ -4,7 +4,7 @@ set -e
 PATH=/usr/local/bin:$PATH
 
 if [ -z "$PUBLIC_IP" ]; then
-  LOCAL_IP=$(ip addr show vxlan.calico | awk '/inet / {print $2}' | cut -f1 -d'/')
+  LOCAL_IP=$(ip addr show tunl0 | awk '/inet / {print $2}' | cut -f1 -d'/')
   PUBLIC_IP=$(ip addr show eth0 | awk '/inet / {print $2}' | cut -f1 -d'/')
   PRIVATE_INTERFACE="private/${LOCAL_IP}"
   PUBLIC_INTERFACE="public/${PUBLIC_IP}"
