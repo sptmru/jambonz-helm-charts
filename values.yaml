@@ -21,7 +21,7 @@ global:
       clusterIssuer:
   nginx:
     tls:
-      enabled: true
+      enabled: false
       clusterIssuer: letsencrypt-prod
   cassandra:
     enabled: true
@@ -155,7 +155,7 @@ api:
   podAnnotations:
   # (required) hostname for the jambonz port ingress
   hostname: api.jambonz.sptm.space
-  protocol: https
+  protocol: http
 
 # jambonz-webapp configuration
 webapp: 
