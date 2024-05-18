@@ -60,7 +60,7 @@ spec:
             - name: K8S 
               value: "1"
             - name: K8S_FEATURE_SERVER_SERVICE_NAME 
-              value: "feature-server"
+              value: feature-server
             - name: JAMBONES_LOGLEVEL
               value: debug
             - name: JAMBONES_TIME_SERIES_HOST 
