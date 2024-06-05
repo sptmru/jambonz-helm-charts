@@ -69,10 +69,18 @@ jambonz:
 #   (But, for production deployments, separate nodepools are recommended for sip and rtp, and this is the default setup below).
 sbc: 
   sip: 
+    nodeSelector: 
+      label: voip-environment 
+      value: sip
+    toleration: sip
     podAnnotations:
     ssl:
       enabled: false
   rtp: 
+    nodeSelector: 
+      label: voip-environment 
+      value: rtp
+    toleration: rtp
     podAnnotations:
     storageClassName:
     # list of extra initContainers

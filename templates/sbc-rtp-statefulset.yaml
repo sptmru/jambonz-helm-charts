@@ -35,6 +35,10 @@ spec:
         {{ .Values.sbc.rtp.nodeSelector.label }}: {{.Values.sbc.rtp.nodeSelector.value | quote }}
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
+      tolerations:
+        - key: {{ .Values.sbc.rtp.toleration | quote }}
+          operator: "Exists"
+          effect: "NoSchedule"
 {{- if .Values.sbc.rtp.serviceAccountName }}
       serviceAccountName: {{ .Values.sbc.rtp.serviceAccountName | quote }}
 {{- end }}
