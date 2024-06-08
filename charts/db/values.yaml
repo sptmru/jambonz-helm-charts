@@ -22,3 +22,11 @@ storageClassName:
 
 # Affinity
 affinity:
+
+dbcreate:
+  sipDomain: sip.jambonz.sptm.space
+  baseIvrApiUrl: http://ivr-app-dev.sptm.space
+  image: sptmru/jambonz-db-create:latest
+  jambonzAccountSid: x012y987-a123-b234-c345-d456e567f678
+  jambonzApplicationSid: 3d9108c8-166e-4473-bebd-8a99e94a12a6
+  jambonzApiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6

@@ -24,7 +24,7 @@ spec:
       {{- end }}
       containers:
         - name: db 
-          image: jambonz/db-create:0.8.5
+          image: {{ .Values.dbcreate.image }}
           env:
             - name: JAMBONES_MYSQL_HOST
               value: {{ .Values.mysql.host }}
@@ -32,6 +32,16 @@ spec:
               value: {{ .Values.mysql.database }}
             - name: JAMBONES_MYSQL_USER
               value: {{ .Values.mysql.user }}
+            - name: JAMBONES_SIP_DOMAIN
+              value: {{ .Values.dbcreate.sipDomain }}
+            - name: JAMBONES_ACCOUNT_SID
+              value: {{ .Values.dbcreate.jambonzAccountSid }}
+            - name: JAMBONES_APPLICATION_SID
+              value: {{ .Values.dbcreate.jambonzApplicationSid }}
+            - name: JAMBONES_API_KEY
+              value: {{ .Values.dbcreate.jambonzApiKey }}
+            - name: BASE_IVR_APP_URL
+              value: {{ .Values.dbcreate.baseIvrApiUrl }}
             - name: JAMBONES_MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
