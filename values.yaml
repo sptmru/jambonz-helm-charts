@@ -131,7 +131,7 @@ drachtio:
 
 # freeswitch configuration
 freeswitch: 
-  image: sptmru/drachtio-freeswitch-mrf-custom:0.44
+  image: sptmru/drachtio-freeswitch-mrf-custom:0.5
   imagePullPolicy: Always
   args:
     - freeswitch
