@@ -23,7 +23,7 @@ spec:
             service:
               name: ivr-app
               port: 
-                number: {{ default "8476" .Values.ivrapp.httpPort  | quote }}
+                number: {{ default "8476" .Values.ivrapp.httpPort }}
           path: /
           pathType: Prefix
 {{- end}}

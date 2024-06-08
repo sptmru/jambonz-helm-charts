@@ -107,6 +107,6 @@ spec:
             - name: DTMF_GATHER_TIMEOUT
               value: {{ default "15" .Values.ivrapp.dtmfGatherTimeout | quote }}
           ports:
-            - containerPort: {{ default "8476" .Values.ivrapp.httpPort  | quote }}
+            - containerPort: {{ default "8476" .Values.ivrapp.httpPort }}
           resources: {}
       restartPolicy: Always

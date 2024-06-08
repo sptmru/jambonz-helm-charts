@@ -256,7 +256,7 @@ ivrapp:
     logLevel: error
     authToken: 09b138334ba4048d7f864c383e823be5c7258b455ccac586cd259b8369f0310b
   hostname: ivrapp.jambonz.sptm.space
-  httpPort: "8476"
+  httpPort: 8476
   apiBasePrefix: /api/v1
   apiAuthToken: agNUL59NL3prrNuLHbQfK9zuux98crULZX9dgsGioYYGAnSZQHqC7JzKmdmDjco3akLaPnDpuGp
   jambonz:

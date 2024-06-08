@@ -9,7 +9,7 @@ metadata:
 spec:
   ports:
     - name: "ivr-app"
-      port:  {{ default "8476" .Values.ivrapp.httpPort  | quote }}
-      targetPort:  {{ default "8476" .Values.ivrapp.httpPort  | quote }}
+      port: {{ default "8476" .Values.ivrapp.httpPort }}
+      targetPort:  {{ default "8476" .Values.ivrapp.httpPort }}
   selector:
     app: ivr-app
