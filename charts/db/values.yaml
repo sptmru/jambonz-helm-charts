@@ -25,7 +25,7 @@ affinity:
 
 dbcreate:
   sipDomain: sip.jambonz.sptm.space
-  baseIvrApiUrl: http://ivr-app-dev.sptm.space
+  baseIvrApiUrl: https://ivrapp.jambonz.sptm.space
   image: sptmru/jambonz-db-create:0.26
   jambonzAccountSid: a012c987-a123-2ccd-bb88-d456e567f678
   jambonzApplicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9
