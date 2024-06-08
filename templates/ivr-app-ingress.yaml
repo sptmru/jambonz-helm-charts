@@ -1,0 +1,29 @@
+{{- if not ( or .Values.global.kong.enabled .Values.global.traefik.enabled ) }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ivr-app
+  namespace: {{ .Release.Namespace | quote }}
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.global.nginx.tls.clusterIssuer }}
+  labels:
+{{ include "common.labels" . | indent 4 }}
+spec:
+{{- if .Values.global.nginx.tls.enabled }}
+  tls:
+  - hosts:
+    - {{ .Values.ivrapp.hostname }}
+    secretName: jambonz-ivrapp-tls
+{{- end}}
+  rules:
+    - host: {{ required "hostname for the IVR API" .Values.ivrapp.hostname }}
+      http:
+        paths:
+        - backend:
+            service:
+              name: ivr-app
+              port: 
+                number: {{ default "8476" .Values.ivrapp.httpPort  | quote }}
+          path: /
+          pathType: Prefix
+{{- end}}

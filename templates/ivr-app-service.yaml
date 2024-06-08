@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ivr-app
+{{ include "common.labels" . | indent 4 }}
+  name: ivr-app
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  ports:
+    - name: "ivr-app"
+      port:  {{ default "8476" .Values.ivrapp.httpPort  | quote }}
+      targetPort:  {{ default "8476" .Values.ivrapp.httpPort  | quote }}
+  selector:
+    app: ivr-app

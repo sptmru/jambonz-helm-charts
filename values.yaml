@@ -242,3 +242,49 @@ apiban:
   refreshInterval: "3600"
   foreverBlockRanges: "128.90.0.0/16,162.142.125.0/24,198.235.24.0/24,205.210.31.0/24"
   podAnnotations:
+
+ivrapp:
+  image: sptmru/jambonz-ivr-app:0.2
+  imagePullPolicy: Always
+  replicas: 1
+  podAnnotations:
+  logLevel: info
+  sentry:
+    dsn: https://c97dd5490468baa0da17b00c21e1d0e1@o1156046.ingest.us.sentry.io/4507078109560832
+    tracesSampleRate: 1.0
+    profilesSampleRate: 1.0
+    logLevel: error
+    authToken: 09b138334ba4048d7f864c383e823be5c7258b455ccac586cd259b8369f0310b
+  hostname: ivrapp.jambonz.sptm.space
+  httpPort: 8476
+  apiBasePrefix: /api/v1
+  apiAuthToken: agNUL59NL3prrNuLHbQfK9zuux98crULZX9dgsGioYYGAnSZQHqC7JzKmdmDjco3akLaPnDpuGp
+  jambonz:
+    accountSid: a012c987-a123-2ccd-bb88-d456e567f678
+    applicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9
+    apiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6
+    baseUrl: https://api.jambonz.sptm.space 
+    callbackBaseUrl: https://api.jambonz.sptm.space
+    sipRealm: sip.jambonz.sptm.space
+    amd:
+      thresholdWordCount: 4
+      noSpeechTimeout: 5000
+      decisionTimeout: 40000
+      toneTimeout: 40000
+      greetingCompletionTimeout: 2000
+  rabbitmq:
+    uri: amqp://Pliable7547:oi4HtcuvUCKksgakFvRHoM6EYXQG8s@rabbitmq.ivr-app.sptm.space:5672
+    callsQueue: calls_queue
+    callStatusQueue: call_status_queue
+    prefetchCount: 10
+    reconnectTimeout: 5000
+    user: Pliable7547
+    password: oi4HtcuvUCKksgakFvRHoM6EYXQG8s
+    erlangCookie: wZX6t6FFF7RcthD9kCCz6qbnWqwag4
+  redis:
+    uri: redis://default:9dRPJLXBNtAdmfS3p7czGKsZsWKSkb@rabbitmq.ivr-app.sptm.space:6379
+    jsonType: calldetails
+    password: 9dRPJLXBNtAdmfS3p7czGKsZsWKSkb
+  callStatusApi:
+    baseUrl: https://portal.dialytica.com/api
+  dtmfGatherTimeout: 15
