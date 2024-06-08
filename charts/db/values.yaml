@@ -30,3 +30,7 @@ dbcreate:
   jambonzAccountSid: a012c987-a123-2ccd-bb88-d456e567f678
   jambonzApplicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9
   jambonzApiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6
+
+ivrapp:
+  redis:
+    image: redis/redis-stack-server:7.2.0-v10
