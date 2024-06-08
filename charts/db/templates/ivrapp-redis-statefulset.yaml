@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: ivrapp-redis
+{{ include "common.labels" . | indent 4 }}
+  name: ivrapp-redis
+  namespace: {{ dig "global" "db" "namespace" .Release.Namespace (.Values | merge (dict)) | quote }}
+spec:
+  serviceName: ivrapp-redis
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ivrapp-redis
+  template:
+    metadata:
+      name: ivrapp-redis
+      labels:
+        app: ivrapp-redis
+      annotations:
+        {{- if .Values.global.podAnnotations }}
+        {{ toYaml .Values.global.podAnnotations | default "" | nindent 8 }}
+        {{- end }}
+        {{- if .Values.ivrapp.redis.podAnnotations }}
+        {{ toYaml .Values.ivrapp.redis.podAnnotations | default "" | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- if .Values.affinity }}
+      affinity:
+        {{ toYaml .Values.affinity | default "" | nindent 8 }}
+      {{- end }}
+      {{- if .Values.ivrapp.redis.nodeSelector }}
+      nodeSelector:
+        {{ .Values.ivrapp.redis.nodeSelector.label }}: {{ .Values.ivrapp.redis.nodeSelector.value | quote }}      
+      {{- end }}
+      containers:
+        - name: redis 
+          image: {{ .Values.ivrapp.redis.image }}
+          ports:
+            - containerPort: 6379
+          resources: {}
+      restartPolicy: Always

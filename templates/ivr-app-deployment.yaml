@@ -97,11 +97,9 @@ spec:
             - name: RABBITMQ_ERLANG_COOKIE
               value: {{ default "" .Values.ivrapp.rabbitmq.erlangCookie  | quote }}
             - name: REDIS_URI
-              value: {{ default "" .Values.ivrapp.redis.uri  | quote }}
+              value: "redis://ivrapp-redis.{{ default .Release.Namespace .Values.global.db.namespace }}:6379"
             - name: REDIS_JSON_TYPE
               value: {{ default "calldetails" .Values.ivrapp.redis.jsonType  | quote }}
-            - name: REDIS_PASSWORD
-              value: {{ default "" .Values.ivrapp.redis.password  | quote }}
             - name: CALL_STATUS_API_BASE_URL
               value: {{ default "" .Values.ivrapp.callStatusApi.baseUrl  | quote }}
             - name: DTMF_GATHER_TIMEOUT
