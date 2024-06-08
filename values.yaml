@@ -131,8 +131,8 @@ drachtio:
 
 # freeswitch configuration
 freeswitch: 
-  image: sptmru/drachtio-freeswitch-mrf-custom:0.3
-  imagePullPolicy: IfNotPresent
+  image: sptmru/drachtio-freeswitch-mrf-custom:0.44
+  imagePullPolicy: Always
   args:
     - freeswitch
     - --codec-answer-generous
@@ -213,8 +213,8 @@ sbcCallRouter:
 
 # feature-server configuration
 featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.1
-  imagePullPolicy: IfNotPresent
+  image: sptmru/drachtio-feature-server-custom:latest
+  imagePullPolicy: Always
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
   freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
