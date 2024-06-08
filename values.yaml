@@ -21,7 +21,7 @@ global:
       clusterIssuer:
   nginx:
     tls:
-      enabled: false
+      enabled: true
       clusterIssuer: letsencrypt-prod
   cassandra:
     enabled: true
@@ -159,7 +159,7 @@ api:
   image: jambonz/api-server:0.9.0
   imagePullPolicy: Always
   httpPort: "3000"
-  replicas: 5
+  replicas: 1
   podAnnotations:
   # (required) hostname for the jambonz port ingress
   hostname: api.jambonz.sptm.space
@@ -213,7 +213,7 @@ sbcCallRouter:
 
 # feature-server configuration
 featureServer: 
-  image: sptmru/drachtio-feature-server-custom:latest
+  image: sptmru/drachtio-feature-server-custom:0.2
   imagePullPolicy: Always
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
