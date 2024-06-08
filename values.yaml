@@ -213,7 +213,7 @@ sbcCallRouter:
 
 # feature-server configuration
 featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.2
+  image: sptmru/drachtio-feature-server-custom:0.3
   imagePullPolicy: Always
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
