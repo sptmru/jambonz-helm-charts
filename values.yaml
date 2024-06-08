@@ -244,7 +244,7 @@ apiban:
   podAnnotations:
 
 ivrapp:
-  image: sptmru/jambonz-ivr-app:0.2
+  image: sptmru/jambonz-ivr-app:0.3
   imagePullPolicy: Always
   replicas: 1
   podAnnotations:
