@@ -52,6 +52,30 @@ spec:
         - name: api-server
           image: {{ .Values.api.image }}
           imagePullPolicy: {{ .Values.api.imagePullPolicy }}
+          readinessProbe:
+            httpGet:
+              path: {{ printf "/v1/Applications/%s" (.Values.ivrapp.jambonz.applicationSid) | quote }}
+              port: {{ .Values.api.httpPort }}
+              httpHeaders:
+                - name: Authorization
+                  value: {{ printf "Bearer %s" (.Values.ivrapp.jambonz.apiKey) | quote }}
+              initialDelaySeconds: 20
+              periodSeconds: 10
+              successThreshold: 1
+              failureThreshold: 1
+              timeoutSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: {{ printf "/v1/Applications/%s" (.Values.ivrapp.jambonz.applicationSid) | quote }}
+              port: {{ .Values.api.httpPort }}
+              httpHeaders:
+                - name: Authorization
+                  value: {{ printf "Bearer %s" (.Values.ivrapp.jambonz.apiKey) | quote }}
+              initialDelaySeconds: 20
+              periodSeconds: 10
+              successThreshold: 1
+              failureThreshold: 1
+              timeoutSeconds: 10
           env:
             - name: NODE_ENV
               value: production
