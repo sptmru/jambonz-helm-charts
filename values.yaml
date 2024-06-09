@@ -159,7 +159,7 @@ api:
   image: jambonz/api-server:0.9.0
   imagePullPolicy: Always
   httpPort: "3000"
-  replicas: 1
+  replicas: 5
   podAnnotations:
   # (required) hostname for the jambonz port ingress
   hostname: api.jambonz.sptm.space
@@ -188,7 +188,7 @@ sbcInbound:
   image: jambonz/sbc-inbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
-  replicas: 1
+  replicas: 2
   podAnnotations:
 
 # sbc-outbound configuration
@@ -196,7 +196,7 @@ sbcOutbound:
   image: jambonz/sbc-outbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
-  replicas: 1
+  replicas: 2
   podAnnotations:
 
 # sbc-sip-sidecar configuration
@@ -209,7 +209,7 @@ sbcCallRouter:
   image: jambonz/sbc-call-router:0.9.0
   imagePullPolicy: IfNotPresent
   httpPort: "3000"
-  replicas: 1
+  replicas: 2
 
 # feature-server configuration
 featureServer: 
@@ -219,7 +219,7 @@ featureServer:
   drachtioConnection: "127.0.0.1:9022:cymru"
   freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
   awsRegion: us-west-1
-  replicas: 1
+  replicas: 3
   otelSampleRate: 1.0
   podAnnotations:
   drachtio:
@@ -246,7 +246,7 @@ apiban:
 ivrapp:
   image: sptmru/jambonz-ivr-app:0.4
   imagePullPolicy: Always
-  replicas: 1
+  replicas: 2
   podAnnotations:
   logLevel: info
   sentry:
@@ -273,18 +273,16 @@ ivrapp:
       toneTimeout: 40000
       greetingCompletionTimeout: 2000
   rabbitmq:
-    uri: amqp://Pliable7547:oi4HtcuvUCKksgakFvRHoM6EYXQG8s@rabbitmq.ivr-app.sptm.space:5672
+    uri: amqp://vos_go:00923bbc0373c55507b2@rmq.dialytica.com:5673
     callsQueue: calls_queue
     callStatusQueue: call_status_queue
     prefetchCount: 10
     reconnectTimeout: 5000
-    user: Pliable7547
-    password: oi4HtcuvUCKksgakFvRHoM6EYXQG8s
+    user: vos_go
+    password: 00923bbc0373c55507b2
     erlangCookie: wZX6t6FFF7RcthD9kCCz6qbnWqwag4
   redis:
-    uri: redis://default:9dRPJLXBNtAdmfS3p7czGKsZsWKSkb@rabbitmq.ivr-app.sptm.space:6379
     jsonType: calldetails
-    password: 9dRPJLXBNtAdmfS3p7czGKsZsWKSkb
   callStatusApi:
     baseUrl: https://portal.dialytica.com/api
   dtmfGatherTimeout: 15
