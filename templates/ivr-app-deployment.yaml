@@ -69,7 +69,7 @@ spec:
             - name: SENTRY_AUTH_TOKEN
               value: {{ default "" .Values.ivrapp.sentry.authToken  | quote }}
             - name: HTTP_HOSTNAME
-              value: {{ printf "https://%s" (default "localhost" .Values.ivrapp.hostname) | quote }}
+              value: {{ printf "http://%s" (default "localhost" .Values.ivrapp.hostname) | quote }}
             - name: HTTP_PORT
               value: {{ default "8476" .Values.ivrapp.httpPort  | quote }}
             - name: API_BASE_PREFIX

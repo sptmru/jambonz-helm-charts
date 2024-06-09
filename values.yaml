@@ -263,9 +263,9 @@ ivrapp:
     accountSid: a012c987-a123-2ccd-bb88-d456e567f678
     applicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9
     apiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6
-    baseUrl: https://api.jambonz.sptm.space 
-    callbackBaseUrl: https://ivrapp.jambonz.sptm.space
-    sipRealm: sip.jambonz.sptm.space
+    baseUrl: http://api.jambonz.sptm.space 
+    callbackBaseUrl: http://ivrapp.jambonz.sptm.space
+    sipRealm: sip.test.sptm.space
     amd:
       thresholdWordCount: 4
       noSpeechTimeout: 5000
