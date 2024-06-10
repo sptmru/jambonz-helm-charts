@@ -68,6 +68,18 @@ spec:
               value: {{ default "error" .Values.ivrapp.sentry.logLevel  | quote }}
             - name: SENTRY_AUTH_TOKEN
               value: {{ default "" .Values.ivrapp.sentry.authToken  | quote }}
+            - name: LOKI_ENABLED
+              value: {{ default "true" .Values.ivrapp.loki.enabled  | quote }}
+            - name: LOKI_ENDPOINT
+              value: {{ default "http://loki-gateway.jambonz.svc.cluster.local/loki/api/v1/push" .Values.ivrapp.loki.endpoint  | quote }}  
+            - name: LOKI_LABEL_JOB
+              value: {{ default "ivr-app" .Values.ivrapp.loki.jobLabel  | quote }}
+            - name: LOKI_JSON
+              value: {{ default "true" .Values.ivrapp.loki.json  | quote }}
+            - name: LOKI_INTERVAL
+              value: {{ default "5" .Values.ivrapp.loki.interval  | quote }}
+            - name: LOKI_TIMEOUT
+              value: {{ default "10000" .Values.ivrapp.loki.timeout  | quote }}
             - name: HTTP_HOSTNAME
               value: {{ printf "http://%s" (default "localhost" .Values.ivrapp.hostname) | quote }}
             - name: HTTP_PORT

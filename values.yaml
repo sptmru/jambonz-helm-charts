@@ -255,6 +255,13 @@ ivrapp:
     profilesSampleRate: 1.0
     logLevel: error
     authToken: 09b138334ba4048d7f864c383e823be5c7258b455ccac586cd259b8369f0310b
+  loki:
+    enabled: true
+    endpoint: http://loki-gateway.jambonz.svc.cluster.local/loki/api/v1/push
+    jobLabel: ivr-app
+    json: true
+    interval: 5
+    timeout: 10000
   hostname: ivrapp.jambonz.sptm.space
   httpPort: 8476
   apiBasePrefix: /api/v1
