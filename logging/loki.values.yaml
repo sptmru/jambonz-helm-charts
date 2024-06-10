@@ -17,6 +17,7 @@ loki:
     retention_deletes_enabled: true
     retention_period: 168h
     retention_policy: 168h
+  auth_enabled: false
 singleBinary:
   replicas: 1
 read:
