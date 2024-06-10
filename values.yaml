@@ -257,7 +257,7 @@ ivrapp:
     authToken: 09b138334ba4048d7f864c383e823be5c7258b455ccac586cd259b8369f0310b
   loki:
     enabled: true
-    endpoint: http://loki-gateway.jambonz.svc.cluster.local/loki/api/v1/push
+    endpoint: http://loki-gateway.jambonz.svc.cluster.local
     jobLabel: ivr-app
     json: true
     interval: 5
