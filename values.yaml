@@ -293,3 +293,23 @@ ivrapp:
   callStatusApi:
     baseUrl: https://portal.dialytica.com/api
   dtmfGatherTimeout: 15
+
+loki:
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: 'filesystem'
+  schemaConfig:
+    configs:
+    - from: "2024-01-01"
+      store: tsdb
+      index:
+        prefix: loki_index_
+        period: 24h
+      object_store: filesystem # we're storing on filesystem so there's no real persistence here.
+      schema: v13
+  table_manager:
+    retention_deletes_enabled: true
+    retention_period: 168h
+    retention_policy: 168h
+  auth_enabled: false

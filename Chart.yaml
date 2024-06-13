@@ -10,6 +10,10 @@ dependencies:
   - name: monitoring 
     version: 0.1.8
     condition: monitoring.enabled
+  - name: loki
+    version: 3.0.0 
+    repository: "https://grafana.github.io/helm-charts"
+
 home: https://jambonz.org
 keywords:
   - voip 
