@@ -8,8 +8,11 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
 spec:
   ports:
-    - name: "ivr-app"
+    - name: "ivr-app-http"
       port: {{ default "8476" .Values.ivrapp.httpPort }}
       targetPort:  {{ default "8476" .Values.ivrapp.httpPort }}
+    - name: "ivr-app-ws"
+      port: {{ default "8081" .Values.ivrapp.ws.port }}
+      targetPort:  {{ default "8081" .Values.ivrapp.ws.port }}
   selector:
     app: ivr-app

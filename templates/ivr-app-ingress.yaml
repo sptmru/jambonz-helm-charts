@@ -6,6 +6,8 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.global.nginx.tls.clusterIssuer }}
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
   labels:
 {{ include "common.labels" . | indent 4 }}
 spec:
@@ -16,7 +18,7 @@ spec:
     secretName: jambonz-ivrapp-tls
 {{- end}}
   rules:
-    - host: {{ required "hostname for the IVR API" .Values.ivrapp.hostname }}
+    - host: {{ required "HTTP hostname for the IVR API" .Values.ivrapp.hostname }}
       http:
         paths:
         - backend:
@@ -24,6 +26,16 @@ spec:
               name: ivr-app
               port: 
                 number: {{ default "8476" .Values.ivrapp.httpPort }}
+          path: /
+          pathType: Prefix
+    - host: {{ required "WS hostname for the IVR API" .Values.ivrapp.ws.hostname }}
+      http:
+        paths:
+        - backend:
+            service:
+              name: ivr-app
+              port: 
+                number: {{ default "8081" .Values.ivrapp.ws.port }}
           path: /
           pathType: Prefix
 {{- end}}

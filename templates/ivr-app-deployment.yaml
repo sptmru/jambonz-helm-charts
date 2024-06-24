@@ -84,6 +84,14 @@ spec:
               value: {{ printf "http://%s" (default "localhost" .Values.ivrapp.hostname) | quote }}
             - name: HTTP_PORT
               value: {{ default "8476" .Values.ivrapp.httpPort  | quote }}
+            - name: WS_ENABLED
+              value: {{ default "true" .Values.ivrapp.ws.enabled  | quote }}
+            - name: WS_HOSTNAME
+              value: {{ default "localhost" .Values.ivrapp.ws.hostname  | quote }}
+            - name: WS_PORT
+              value: {{ default "8081" .Values.ivrapp.ws.port  | quote }}
+            - name: WS_IVR_ENDPOINT
+              value: {{ default "/ivr" .Values.ivrapp.ws.ivrEndpoint)  | quote }}
             - name: API_BASE_PREFIX
               value: {{ default "/api/v1" .Values.ivrapp.apiBasePrefix  | quote }}
             - name: API_AUTH_TOKEN
@@ -136,5 +144,6 @@ spec:
               value: {{ default "15" .Values.ivrapp.dtmfGatherTimeout | quote }}
           ports:
             - containerPort: {{ default "8476" .Values.ivrapp.httpPort }}
+            - containerPort: {{ default "8081" .Values.ivrapp.ws.port }}
           resources: {}
       restartPolicy: Always

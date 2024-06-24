@@ -262,8 +262,14 @@ ivrapp:
     json: true
     interval: 5
     timeout: 10000
+  ws:
+    hostname: ws.ivrapp.jambonz.sptm.space
+    port: 8081
+    enabled: true
+    ivrEndpoint: /ivr
   hostname: ivrapp.jambonz.sptm.space
   httpPort: 8476
+  wsPort: 8081
   apiBasePrefix: /api/v1
   apiAuthToken: agNUL59NL3prrNuLHbQfK9zuux98crULZX9dgsGioYYGAnSZQHqC7JzKmdmDjco3akLaPnDpuGp
   jambonz:
