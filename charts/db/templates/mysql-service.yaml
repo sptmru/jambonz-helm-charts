@@ -7,10 +7,9 @@ metadata:
   name: mysql
   namespace: {{ dig "global" "db" "namespace" .Release.Namespace (.Values | merge (dict)) | quote }}
 spec:
+  type: ExternalName
+  externalName: mysql.db.jambonz.dialytica.com
   ports:
     - name: "mysql"
       port: 3306
       targetPort: 3306
-  selector:
-    app: mysql
-  clusterIP: None
