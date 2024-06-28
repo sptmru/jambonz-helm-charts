@@ -91,7 +91,7 @@ spec:
             - name: WS_PORT
               value: {{ default "8081" .Values.ivrapp.ws.port  | quote }}
             - name: WS_IVR_ENDPOINT
-              value: {{ default "/ivr" .Values.ivrapp.ws.ivrEndpoint)  | quote }}
+              value: {{ default "/ivr" .Values.ivrapp.ws.ivrEndpoint  | quote }}
             - name: API_BASE_PREFIX
               value: {{ default "/api/v1" .Values.ivrapp.apiBasePrefix  | quote }}
             - name: API_AUTH_TOKEN
@@ -118,6 +118,8 @@ spec:
               value: {{ default "40000" .Values.ivrapp.jambonz.amd.toneTimeout  | quote }}
             - name: JAMBONZ_AMD_GREETING_COMPLETION_TIMEOUT
               value: {{ default "2000" .Values.ivrapp.jambonz.amd.greetingCompletionTimeout  | quote }}
+            - name: JAMBONZ_DEFAULT_PREFIX
+              value: {{ default "" .Values.ivrapp.jambonz.defaultPrefix  | quote }}
             - name: RABBITMQ_URI
               value: {{ default "" .Values.ivrapp.rabbitmq.uri  | quote }}
             - name: RABBITMQ_CALLS_QUEUE
