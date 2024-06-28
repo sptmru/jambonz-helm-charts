@@ -3,11 +3,11 @@ mysql:
   image: mysql:5.7
   host: mysql 
   database: jambones
-  user: jambones 
+  user: jambones_user
   storage: 10Gi
   # if empty, an empty password is used for the root user using MYSQL_ALLOW_EMPTY_PASSWORD
-  rootSecret:
-  secret: amFtYm9uZXM=
+  rootSecret: dWdlUFdxbTluQDZCVkBDdyUzb1ZEcFppczI1WFVeUWlhWTg=
+  secret: Y2Q0YmExMTQ1ZDg2N2Y2ZTU3MzQ=
   podAnnotations:
 
 # redis configuration used by Node.js app that need to connect
@@ -24,8 +24,8 @@ storageClassName:
 affinity:
 
 dbcreate:
-  sipDomain: sip.test.sptm.space
-  baseIvrApiUrl: http://ivrapp.test.sptm.space/api/v1
+  sipDomain: prod-worker4.dialytica.com
+  baseIvrApiUrl: http://ivrapi.jambonz.prod.sptm.space/api/v1
   image: sptmru/jambonz-db-create:0.26
   jambonzAccountSid: a012c987-a123-2ccd-bb88-d456e567f678
   jambonzApplicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9

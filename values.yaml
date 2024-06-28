@@ -38,12 +38,12 @@ db:
   # if true, create the db subchart
   enabled: true
   mysql: 
-    secret: amFtYm9uZXM=
+    secret: Y2Q0YmExMTQ1ZDg2N2Y2ZTU3MzQ=
 monitoring: 
   # if true, create the monitoring subchart
   enabled: true
   postgres: 
-    secret: amFtYm9uZXM=
+    secret: dWdlUFdxbTluQDZCVkBDdyUzb1ZEcFppczI1WFVeUWlhWTg=
 
 # (required) name of cloud provider: azure, aws, digitalocean, gcp, or none 
 cloud:
@@ -131,7 +131,7 @@ drachtio:
 
 # freeswitch configuration
 freeswitch: 
-  image: sptmru/drachtio-freeswitch-mrf-custom:0.5
+  image: sptmru/drachtio-freeswitch-mrf-custom:0.8
   imagePullPolicy: Always
   args:
     - freeswitch
@@ -142,7 +142,7 @@ mysql:
   image: mysql:5.7
   host: mysql 
   database: jambones
-  user: jambones 
+  user: jambones_user 
   # used when the rtp is in StatefulSet mode (sbc.rtp.statefulset.enabled is true)
   storage: 10Gi
   podAnnotations:
@@ -159,10 +159,10 @@ api:
   image: jambonz/api-server:0.9.0
   imagePullPolicy: Always
   httpPort: "3000"
-  replicas: 5
+  replicas: 20
   podAnnotations:
   # (required) hostname for the jambonz port ingress
-  hostname: api.jambonz.sptm.space
+  hostname: api.jambonz.prod.sptm.space
   protocol: http
 
 # jambonz-webapp configuration
@@ -173,7 +173,7 @@ webapp:
   podAnnotations:
   
   # (required) hostname for the jambonz port ingress
-  hostname: webapp.jambonz.sptm.space
+  hostname: portal.jambonz.prod.sptm.space
 
   # set to true to disable recording in the portal
   disableRecording: false 
@@ -188,7 +188,7 @@ sbcInbound:
   image: jambonz/sbc-inbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
-  replicas: 2
+  replicas: 4
   podAnnotations:
 
 # sbc-outbound configuration
@@ -196,7 +196,7 @@ sbcOutbound:
   image: jambonz/sbc-outbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
-  replicas: 2
+  replicas: 4
   podAnnotations:
 
 # sbc-sip-sidecar configuration
@@ -213,13 +213,13 @@ sbcCallRouter:
 
 # feature-server configuration
 featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.3
+  image: sptmru/drachtio-feature-server-custom:0.4
   imagePullPolicy: Always
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
   freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
   awsRegion: us-west-1
-  replicas: 3
+  replicas: 20
   otelSampleRate: 1.0
   podAnnotations:
   drachtio:
@@ -244,7 +244,7 @@ apiban:
   podAnnotations:
 
 ivrapp:
-  image: sptmru/jambonz-ivr-app:0.17
+  image: sptmru/jambonz-ivr-app:0.32
   imagePullPolicy: Always
   replicas: 2
   podAnnotations:
@@ -263,11 +263,11 @@ ivrapp:
     interval: 5
     timeout: 10000
   ws:
-    hostname: ws.ivrapp.jambonz.sptm.space
+    hostname: ws.ivrapi.jambonz.prod.sptm.space
     port: 8081
     enabled: true
     ivrEndpoint: /ivr
-  hostname: ivrapp.jambonz.sptm.space
+  hostname: ivrapi.jambonz.prod.sptm.space
   httpPort: 8476
   wsPort: 8081
   apiBasePrefix: /api/v1
@@ -276,8 +276,8 @@ ivrapp:
     accountSid: a012c987-a123-2ccd-bb88-d456e567f678
     applicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9
     apiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6
-    baseUrl: http://api.jambonz.sptm.space 
-    callbackBaseUrl: http://ivrapp.jambonz.sptm.space
+    baseUrl: http://api.jambonz.prod.sptm.space
+    callbackBaseUrl: http://ivrapi.jambonz.prod.sptm.space
     sipRealm: sip.test.sptm.space
     amd:
       thresholdWordCount: 4

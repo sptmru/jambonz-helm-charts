@@ -18,12 +18,12 @@ cassandra:
   podAnnotations:
 homer: 
   image: sipcapture/webapp:latest
-  hostname: homer.jambonz.sptm.space
+  hostname: homer.jambonz.prod.sptm.space
   podAnnotations:
 postgres: 
   image: postgres:11-alpine
   user: cm9vdA==
-  secret: aG9tZXJTZXZlbg==
+  secret: czhnV3ZtZypZcWQzckt6OCNQSE1jV0FkY3BtWER0Jjh5Znk=
   storage: 30Gi 
   podAnnotations:
 telegraf: 
