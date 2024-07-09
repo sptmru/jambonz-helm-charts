@@ -21,21 +21,21 @@ spec:
         {{- if .Values.global.podAnnotations }}
         {{ toYaml .Values.global.podAnnotations | default "" | nindent 8 }}
         {{- end }}
-        {{- if .Values.fs-status.redis.podAnnotations }}
-        {{ toYaml .Values.fs-status.redis.podAnnotations | default "" | nindent 8 }}
+        {{- if .Values.fsstatus.redis.podAnnotations }}
+        {{ toYaml .Values.fsstatus.redis.podAnnotations | default "" | nindent 8 }}
         {{- end }}
     spec:
       {{- if .Values.affinity }}
       affinity:
         {{ toYaml .Values.affinity | default "" | nindent 8 }}
       {{- end }}
-      {{- if .Values.fs-status.redis.nodeSelector }}
+      {{- if .Values.fsstatus.redis.nodeSelector }}
       nodeSelector:
-        {{ .Values.fs-status.redis.nodeSelector.label }}: {{ .Values.ivrapp.redis.nodeSelector.value | quote }}      
+        {{ .Values.fsstatus.redis.nodeSelector.label }}: {{ .Values.fsstatus.redis.nodeSelector.value | quote }}      
       {{- end }}
       containers:
         - name: redis 
-          image: {{ .Values.fs-status.redis.image }}
+          image: {{ .Values.fsstatus.redis.image }}
           ports:
             - containerPort: 6379
           resources: {}

@@ -9,7 +9,7 @@ metadata:
 spec:
   ports:
     - name: "fs-status-api-http"
-      port: {{ default "8479" .Values.fs-status-api.httpPort }}
-      targetPort:  {{ default "8479" .Values.fs-status-api.httpPort }}
+      port: {{ default "8479" .Values.fsstatusapi.httpPort }}
+      targetPort:  {{ default "8479" .Values.fsstatusapi.httpPort }}
   selector:
     app: fs-status-api

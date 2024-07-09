@@ -14,18 +14,18 @@ spec:
 {{- if .Values.global.nginx.tls.enabled }}
   tls:
   - hosts:
-    - {{ .Values.fs-status-api.hostname }}
+    - {{ .Values.fsstatusapi.hostname }}
     secretName: jambonz-fs-status-api-tls
 {{- end}}
   rules:
-    - host: {{ required "HTTP hostname for the FS status API" .Values.fs-status-api.hostname }}
+    - host: {{ required "HTTP hostname for the FS status API" .Values.fsstatusapi.hostname }}
       http:
         paths:
         - backend:
             service:
               name: fs-status-api
               port: 
-                number: {{ default "8479" .Values.fs-status-api.httpPort }}
+                number: {{ default "8479" .Values.fsstatusapi.httpPort }}
           path: /
           pathType: Prefix
 {{- end}}

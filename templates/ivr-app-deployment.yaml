@@ -91,7 +91,7 @@ spec:
             - name: WS_PORT
               value: {{ default "8081" .Values.ivrapp.ws.port  | quote }}
             - name: WS_IVR_ENDPOINT
-              value: {{ default "/ivr" .Values.ivrapp.ws.ivrEndpoint)  | quote }}
+              value: {{ default "/ivr" .Values.ivrapp.ws.ivrEndpoint  | quote }}
             - name: API_BASE_PREFIX
               value: {{ default "/api/v1" .Values.ivrapp.apiBasePrefix  | quote }}
             - name: API_AUTH_TOKEN
