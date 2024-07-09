@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: fs-status-api
+{{ include "common.labels" . | indent 4 }}
+  name: fs-status-api
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  replicas: {{ default 1 .Values.fs-status-api.replicas }}
+  selector:
+    matchLabels:
+      app: fs-status-api
+  template:
+    metadata:
+      labels:
+        app: fs-status-api
+      annotations:
+        {{- if .Values.global.podAnnotations }}
+        {{ toYaml .Values.global.podAnnotations | default "" | nindent 8 }}
+        {{- end }}
+        {{- if .Values.fs-status-api.podAnnotations }}
+        {{ toYaml .Values.fs-status-api.podAnnotations | default "" | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- if .Values.global.affinity }}
+      affinity:
+        {{ toYaml .Values.global.affinity | default "" | nindent 8 }}
+      {{- end }}
+      {{- if .Values.fs-status-api.nodeSelector }}
+      nodeSelector:
+        {{ .Values.fs-status-api.nodeSelector.label }}: {{ .Values.fs-status-api.nodeSelector.value | quote }}      
+      {{- end }}
+      containers:
+        - name: fs-status-api
+          image: {{ .Values.fs-status-api.image }}
+          imagePullPolicy: {{ .Values.fs-status-api.imagePullPolicy }}
+          env:
+            - name: LOG_LEVEL
+              value: {{ default "info" .Values.fs-status-api.logLevel  | quote }}
+            - name: LOG_TO_FILE
+              value: "false"
+            - name: LOKI_ENABLED
+              value: {{ default "true" .Values.fs-status-api.loki.enabled  | quote }}
+            - name: LOKI_ENDPOINT
+              value: {{ default "http://loki-gateway.jambonz.svc.cluster.local/loki/api/v1/push" .Values.fs-status-api.loki.endpoint  | quote }}  
+            - name: LOKI_LABEL_JOB
+              value: {{ default "fs-status-api" .Values.fs-status-api.loki.jobLabel  | quote }}
+            - name: LOKI_JSON
+              value: {{ default "true" .Values.fs-status-api.loki.json  | quote }}
+            - name: LOKI_INTERVAL
+              value: {{ default "5" .Values.fs-status-api.loki.interval  | quote }}
+            - name: LOKI_TIMEOUT
+              value: {{ default "10000" .Values.fs-status-api.loki.timeout  | quote }}
+            - name: HTTP_HOSTNAME
+              value: {{ printf "http://%s" (default "localhost" .Values.fs-status-api.hostname) | quote }}
+            - name: HTTP_PORT
+              value: {{ default "8476" .Values.fs-status-api.httpPort  | quote }}
+            - name: WS_ENABLED
+              value: {{ default "true" .Values.fs-status-api.ws.enabled  | quote }}
+            - name: API_BASE_PREFIX
+              value: {{ default "/api/v1" .Values.fs-status-api.apiBasePrefix  | quote }}
+            - name: API_AUTH_TOKEN
+              value: {{ default "" .Values.fs-status-api.apiAuthToken  | quote }}
+            - name: REDIS_URI
+              value: "redis://fs-status-redis.{{ default .Release.Namespace .Values.global.db.namespace }}:6379"
+            - name: REDIS_INSTANCE_SET
+              value: {{ default "instances" .Values.fs-status-api.redis.instanceSet  | quote }}
+            - name: FEATURE_SERVER_MAX_CALLS
+              value: {{ default "1200" .Values.fs-status-api.featureServerMaxCalls  | quote }}
+          ports:
+            - containerPort: {{ default "8479" .Values.fs-status-api.httpPort }}
+            - containerPort: {{ default "8082" .Values.fs-status-api.ws.port }}
+          resources: {}
+      restartPolicy: Always

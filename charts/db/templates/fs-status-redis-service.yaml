@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: ivrapp-redis
+    app: fs-status-redis
 {{ include "common.labels" . | indent 4 }}
-  name: ivrapp-redis
+  name: fs-status-redis
   namespace: {{ dig "global" "db" "namespace" .Release.Namespace (.Values | merge (dict)) | quote }}
 spec:
   ports:
-    - name: "ivrapp-redis"
+    - name: "fs-status-redis"
       port: 6379
       targetPort: 6379
   selector:
-    app: ivrapp-redis
+    app: fs-status-redis
   clusterIP: None
