@@ -163,6 +163,8 @@ spec:
               value: {{ default "0" .Values.stats.enabled  | quote }}
             - name: JAMBONZ_CLEANUP_INTERVAL_MINS
               value: "60"
+            - name: FS_STATUS_API
+              value: "http://fs-status-api:8479"
             {{- if .Values.stats.enabled }}
             - name: K8S_POD_NAME
               valueFrom:
