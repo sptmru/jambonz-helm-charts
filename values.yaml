@@ -213,7 +213,7 @@ sbcCallRouter:
 
 # feature-server configuration
 featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.4
+  image: sptmru/drachtio-feature-server-custom:0.9
   imagePullPolicy: Always
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
@@ -244,7 +244,7 @@ apiban:
   podAnnotations:
 
 ivrapp:
-  image: sptmru/jambonz-ivr-app:0.32
+  image: sptmru/jambonz-ivr-app:0.38
   imagePullPolicy: Always
   replicas: 2
   podAnnotations:
@@ -263,11 +263,11 @@ ivrapp:
     interval: 5
     timeout: 10000
   ws:
-    hostname: ws.ivrapi.jambonz.prod.sptm.space
+    hostname: ws.ivrapp.test.sptm.space
     port: 8081
     enabled: true
     ivrEndpoint: /ivr
-  hostname: ivrapi.jambonz.prod.sptm.space
+  hostname: ivrapp.test.sptm.space
   httpPort: 8476
   wsPort: 8081
   apiBasePrefix: /api/v1
@@ -276,8 +276,8 @@ ivrapp:
     accountSid: a012c987-a123-2ccd-bb88-d456e567f678
     applicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9
     apiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6
-    baseUrl: http://api.jambonz.prod.sptm.space
-    callbackBaseUrl: http://ivrapi.jambonz.prod.sptm.space
+    baseUrl: http://api-server:3000
+    callbackBaseUrl: http://ivr-app:8476
     sipRealm: sip.test.sptm.space
     amd:
       thresholdWordCount: 4
@@ -299,6 +299,27 @@ ivrapp:
   callStatusApi:
     baseUrl: https://portal.dialytica.com/api
   dtmfGatherTimeout: 15
+
+fs-status-api:
+  image: sptmru/jambonz-fs-status-api:0.4
+  imagePullPolicy: Always
+  replicas: 1
+  podAnnotations:
+  logLevel: debug
+  loki:
+    enabled: true
+    endpoint: http://loki-gateway.jambonz.svc.cluster.local
+    jobLabel: fs-status-api
+    json: true
+    interval: 5
+    timeout: 10000
+  hostname: fs-status-api.jambonz.test.sptm.space
+  httpPort: 8479
+  apiBasePrefix: /api/v1
+  apiAuthToken: pNubPhzdh3uW9tuoAyjb89FuRq7ZXxapvDs4uKBd2yinA8c7xvZfqn884DH9dgVJNR7UGEBQwcW
+  redis:
+    instanceSet: instances
+  featureServerMaxCalls: 1200
 
 loki:
   commonConfig:

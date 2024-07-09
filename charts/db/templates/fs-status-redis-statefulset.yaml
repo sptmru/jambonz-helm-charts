@@ -2,40 +2,40 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   labels:
-    app: ivrapp-redis
+    app: fs-status-redis
 {{ include "common.labels" . | indent 4 }}
-  name: ivrapp-redis
+  name: fs-status-redis
   namespace: {{ dig "global" "db" "namespace" .Release.Namespace (.Values | merge (dict)) | quote }}
 spec:
-  serviceName: ivrapp-redis
+  serviceName: fs-status-redis
   replicas: 1
   selector:
     matchLabels:
-      app: ivrapp-redis
+      app: fs-status-redis
   template:
     metadata:
-      name: ivrapp-redis
+      name: fs-status-redis
       labels:
-        app: ivrapp-redis
+        app: fs-status-redis
       annotations:
         {{- if .Values.global.podAnnotations }}
         {{ toYaml .Values.global.podAnnotations | default "" | nindent 8 }}
         {{- end }}
-        {{- if .Values.ivrapp.redis.podAnnotations }}
-        {{ toYaml .Values.ivrapp.redis.podAnnotations | default "" | nindent 8 }}
+        {{- if .Values.fs-status.redis.podAnnotations }}
+        {{ toYaml .Values.fs-status.redis.podAnnotations | default "" | nindent 8 }}
         {{- end }}
     spec:
       {{- if .Values.affinity }}
       affinity:
         {{ toYaml .Values.affinity | default "" | nindent 8 }}
       {{- end }}
-      {{- if .Values.ivrapp.redis.nodeSelector }}
+      {{- if .Values.fs-status.redis.nodeSelector }}
       nodeSelector:
-        {{ .Values.ivrapp.redis.nodeSelector.label }}: {{ .Values.ivrapp.redis.nodeSelector.value | quote }}      
+        {{ .Values.fs-status.redis.nodeSelector.label }}: {{ .Values.ivrapp.redis.nodeSelector.value | quote }}      
       {{- end }}
       containers:
         - name: redis 
-          image: {{ .Values.ivrapp.redis.image }}
+          image: {{ .Values.fs-status.redis.image }}
           ports:
             - containerPort: 6379
           resources: {}
