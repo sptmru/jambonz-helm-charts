@@ -129,14 +129,6 @@ drachtio:
   homerId: "10"
   secret: Y3ltcnU=
 
-# freeswitch configuration
-freeswitch: 
-  image: sptmru/drachtio-freeswitch-mrf-custom:0.8
-  imagePullPolicy: Always
-  args:
-    - freeswitch
-    - --codec-answer-generous
-
 # mysql configuration used by Node.js app that need to connect
 mysql: 
   image: mysql:5.7
@@ -153,17 +145,6 @@ redis:
   host: redis 
   port: "6379"
   podAnnotations:
-
-# configuration for jambonz-api-server
-api: 
-  image: jambonz/api-server:0.9.0
-  imagePullPolicy: Always
-  httpPort: "3000"
-  replicas: 20
-  podAnnotations:
-  # (required) hostname for the jambonz port ingress
-  hostname: api.jambonz.prod.sptm.space
-  protocol: http
 
 # jambonz-webapp configuration
 webapp: 
@@ -211,21 +192,6 @@ sbcCallRouter:
   httpPort: "3000"
   replicas: 2
 
-# feature-server configuration
-featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.4
-  imagePullPolicy: Always
-  httpPort: "3000"
-  drachtioConnection: "127.0.0.1:9022:cymru"
-  freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
-  awsRegion: us-west-1
-  replicas: 20
-  otelSampleRate: 1.0
-  podAnnotations:
-  drachtio:
-    loglevel: info
-    sofiaLoglevel: "3"
-
 # sbc-sip configuration
 sbcSip: 
   loglevel: info 
@@ -243,10 +209,67 @@ apiban:
   foreverBlockRanges: "128.90.0.0/16,162.142.125.0/24,198.235.24.0/24,205.210.31.0/24"
   podAnnotations:
 
+# Jambonz API server configuration
+api: 
+  image: sptmru/jambonz-api-server-custom:0.31
+  imagePullPolicy: Always
+  httpPort: "3000"
+  replicas: 80
+  podAnnotations:
+  # (required) hostname for the jambonz port ingress
+  hostname: api.jambonz.prod.sptm.space
+  protocol: http 
+
+# FreeSWITCH configuration
+freeswitch: 
+  image: sptmru/drachtio-freeswitch-mrf-custom:0.8
+  imagePullPolicy: Always
+  args:
+    - freeswitch
+    - --codec-answer-generous
+
+# Feature server configuration
+featureServer: 
+  image: sptmru/drachtio-feature-server-custom:0.49
+  imagePullPolicy: Always
+  httpPort: "3000"
+  drachtioConnection: "127.0.0.1:9022:cymru"
+  freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
+  awsRegion: us-west-1
+  replicas: 80
+  otelSampleRate: 1.0
+  podAnnotations:
+  drachtio:
+    loglevel: info
+    sofiaLoglevel: "3"
+
+# Feature server status API configuration
+fsstatusapi:
+  image: sptmru/jambonz-fs-status-api:0.12
+  imagePullPolicy: Always
+  replicas: 10
+  podAnnotations:
+  logLevel: debug
+  loki:
+    enabled: true
+    endpoint: http://loki-gateway.jambonz.svc.cluster.local
+    jobLabel: fs-status-api
+    json: true
+    interval: 5
+    timeout: 10000
+  hostname: fs-status-api.jambonz.prod.sptm.space
+  httpPort: 8479
+  apiBasePrefix: /api/v1
+  apiAuthToken: pNubPhzdh3uW9tuoAyjb89FuRq7ZXxapvDs4uKBd2yinA8c7xvZfqn884DH9dgVJNR7UGEBQwcW
+  redis:
+    instanceSet: instances
+  featureServerMaxCalls: 1200
+
+# IVR app configuration
 ivrapp:
   image: sptmru/jambonz-ivr-app:0.32
   imagePullPolicy: Always
-  replicas: 2
+  replicas: 20
   podAnnotations:
   logLevel: info
   sentry:
@@ -265,7 +288,7 @@ ivrapp:
   ws:
     hostname: ws.ivrapi.jambonz.prod.sptm.space
     port: 8081
-    enabled: true
+    enabled: false
     ivrEndpoint: /ivr
   hostname: ivrapi.jambonz.prod.sptm.space
   httpPort: 8476
@@ -278,7 +301,7 @@ ivrapp:
     apiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6
     baseUrl: http://api.jambonz.prod.sptm.space
     callbackBaseUrl: http://ivrapi.jambonz.prod.sptm.space
-    sipRealm: sip.test.sptm.space
+    sipRealm: prod-worker4.dialytica.com
     amd:
       thresholdWordCount: 4
       noSpeechTimeout: 5000
