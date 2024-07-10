@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    app: fs-status-redis
+{{ include "common.labels" . | indent 4 }}
+  name: fs-status-redis
+  namespace: {{ dig "global" "db" "namespace" .Release.Namespace (.Values | merge (dict)) | quote }}
+spec:
+  serviceName: fs-status-redis
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fs-status-redis
+  template:
+    metadata:
+      name: fs-status-redis
+      labels:
+        app: fs-status-redis
+      annotations:
+        {{- if .Values.global.podAnnotations }}
+        {{ toYaml .Values.global.podAnnotations | default "" | nindent 8 }}
+        {{- end }}
+        {{- if .Values.fsstatus.redis.podAnnotations }}
+        {{ toYaml .Values.fsstatus.redis.podAnnotations | default "" | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- if .Values.affinity }}
+      affinity:
+        {{ toYaml .Values.affinity | default "" | nindent 8 }}
+      {{- end }}
+      {{- if .Values.fsstatus.redis.nodeSelector }}
+      nodeSelector:
+        {{ .Values.fsstatus.redis.nodeSelector.label }}: {{ .Values.fsstatus.redis.nodeSelector.value | quote }}      
+      {{- end }}
+      containers:
+        - name: redis 
+          image: {{ .Values.fsstatus.redis.image }}
+          ports:
+            - containerPort: 6379
+          resources: {}
+      restartPolicy: Always
