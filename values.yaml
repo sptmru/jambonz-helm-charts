@@ -222,6 +222,9 @@ featureServer:
   replicas: 3
   otelSampleRate: 1.0
   podAnnotations:
+  fsstatusapi:
+    baseUrl: http://fs-status-api:8479/api/v1
+    apiKey: pNubPhzdh3uW9tuoAyjb89FuRq7ZXxapvDs4uKBd2yinA8c7xvZfqn884DH9dgVJNR7UGEBQwcW
   drachtio:
     loglevel: info
     sofiaLoglevel: "3"
