@@ -173,6 +173,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
             - name: STATS_HOST
               value: {{ .Values.stats.host }}.{{ default .Release.Namespace .Values.global.monitoring.namespace }}
             - name: STATS_PORT
