@@ -124,6 +124,10 @@ spec:
             - name: STATS_SAMPLE_RATE
               value:  {{ .Values.stats.sampleRate | quote }}
             {{- end }}
+            - name: FS_STATUS_API
+              value: {{ default "http://fs-status-api:8479/api/v1" .Values.featureServer.fsStatusApi.baseUrl  | quote }}
+            - name: FS_STATUS_API_KEY
+              value: {{ default "" .Values.featureServer.fsStatusApi.apiKey  | quote }}
             - name: JAMBONES_REDIS_HOST
               value: redis.{{ default .Release.Namespace .Values.global.db.namespace }}
             - name: JAMBONES_REDIS_PORT
