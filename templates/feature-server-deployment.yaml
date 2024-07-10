@@ -164,7 +164,10 @@ spec:
             - name: JAMBONZ_CLEANUP_INTERVAL_MINS
               value: "60"
             - name: FS_STATUS_API
-              value: "http://fs-status-api:8479"
+              value: {{ default "http://fs-status-api:8479/api/v1" .Values.featureServer.fsStatusApi.baseUrl  | quote }}
+            - name: FS_STATUS_API_KEY
+              value: {{ default "" .Values.featureServer.fsStatusApi.apiKey  | quote }}
+              
             {{- if .Values.stats.enabled }}
             - name: K8S_POD_NAME
               valueFrom:
