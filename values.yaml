@@ -156,7 +156,7 @@ redis:
 
 # configuration for jambonz-api-server
 api: 
-  image: sptmru/jambonz-api-server-custom:0.29
+  image: sptmru/jambonz-api-server-custom:0.30
   imagePullPolicy: Always
   httpPort: "3000"
   replicas: 2
@@ -304,7 +304,7 @@ ivrapp:
   dtmfGatherTimeout: 15
 
 fsstatusapi:
-  image: sptmru/jambonz-fs-status-api:0.9
+  image: sptmru/jambonz-fs-status-api:0.10
   imagePullPolicy: Always
   replicas: 1
   podAnnotations:
