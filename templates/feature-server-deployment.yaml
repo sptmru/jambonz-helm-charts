@@ -81,7 +81,7 @@ spec:
                 command: [
                   "/bin/sh",
                   "-c",
-                  "while $(curl --output /dev/null --silent --head --fail-early http://127.0.0.1:3000); do printf '.'; sleep 10; done"
+                  "while $(curl --output /dev/null --silent --head --fail-early http://127.0.0.1:3000); do printf '.'; sleep 10; done",
                 ]
           args: ['drachtio', '--contact', 'sip:*:5060;transport=udp', '--mtu', '4096', '--loglevel', {{ .Values.featureServer.drachtio.loglevel | squote }}, 'sofia-loglevel', {{ .Values.featureServer.drachtio.sofiaLoglevel | squote }}]
           ports:
@@ -123,7 +123,10 @@ spec:
           lifecycle:
             preStop:
               exec:
-                command: ["/bin/sh", "-c", "/opt/app/bin/k8s-pre-stop-hook.js"]
+                command: [
+                  "/bin/sh", "-c",
+                  "curl -X DELETE -H 'Authorization: Bearer {{ .Values.featureServer.fsStatusApi.apiKey | quote }}' http://fs-status-api:8479/api/v1/instanceCalls/$(hostname -i) && /opt/app/bin/k8s-pre-stop-hook.js"
+                ]
           volumeMounts:
             - mountPath: /tmp 
               name: temp-audio-volume
