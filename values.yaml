@@ -131,7 +131,7 @@ drachtio:
 
 # freeswitch configuration
 freeswitch: 
-  image: sptmru/drachtio-freeswitch-mrf-custom:0.5
+  image: sptmru/drachtio-freeswitch-mrf-custom:0.8
   imagePullPolicy: Always
   args:
     - freeswitch
@@ -156,7 +156,7 @@ redis:
 
 # configuration for jambonz-api-server
 api: 
-  image: jambonz/api-server:0.9.0
+  image: sptmru/jambonz-api-server-custom:0.29
   imagePullPolicy: Always
   httpPort: "3000"
   replicas: 2
@@ -213,7 +213,7 @@ sbcCallRouter:
 
 # feature-server configuration
 featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.9
+  image: sptmru/drachtio-feature-server-custom:0.38
   imagePullPolicy: Always
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
@@ -304,7 +304,7 @@ ivrapp:
   dtmfGatherTimeout: 15
 
 fsstatusapi:
-  image: sptmru/jambonz-fs-status-api:0.4
+  image: sptmru/jambonz-fs-status-api:0.9
   imagePullPolicy: Always
   replicas: 1
   podAnnotations:
