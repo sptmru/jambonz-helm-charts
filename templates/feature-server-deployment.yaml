@@ -127,6 +127,12 @@ spec:
                   "/bin/sh", "-c",
                   "/opt/app/bin/k8s-pre-stop-hook.js"
                 ]
+            postStart:
+              exec:
+                command: [
+                  "/bin/sh", "-c",
+                  "/opt/app/bin/k8s-post-start-hook.js"
+                ]
           volumeMounts:
             - mountPath: /tmp 
               name: temp-audio-volume
