@@ -129,14 +129,6 @@ drachtio:
   homerId: "10"
   secret: Y3ltcnU=
 
-# freeswitch configuration
-freeswitch: 
-  image: sptmru/drachtio-freeswitch-mrf-custom:0.8
-  imagePullPolicy: Always
-  args:
-    - freeswitch
-    - --codec-answer-generous
-
 # mysql configuration used by Node.js app that need to connect
 mysql: 
   image: mysql:5.7
@@ -153,17 +145,6 @@ redis:
   host: redis 
   port: "6379"
   podAnnotations:
-
-# configuration for jambonz-api-server
-api: 
-  image: sptmru/jambonz-api-server-custom:0.30
-  imagePullPolicy: Always
-  httpPort: "3000"
-  replicas: 2
-  podAnnotations:
-  # (required) hostname for the jambonz port ingress
-  hostname: api.jambonz.sptm.space
-  protocol: http
 
 # jambonz-webapp configuration
 webapp: 
@@ -211,24 +192,6 @@ sbcCallRouter:
   httpPort: "3000"
   replicas: 2
 
-# feature-server configuration
-featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.38
-  imagePullPolicy: Always
-  httpPort: "3000"
-  drachtioConnection: "127.0.0.1:9022:cymru"
-  freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
-  awsRegion: us-west-1
-  replicas: 3
-  otelSampleRate: 1.0
-  podAnnotations:
-  fsstatusapi:
-    baseUrl: http://fs-status-api:8479/api/v1
-    apiKey: pNubPhzdh3uW9tuoAyjb89FuRq7ZXxapvDs4uKBd2yinA8c7xvZfqn884DH9dgVJNR7UGEBQwcW
-  drachtio:
-    loglevel: info
-    sofiaLoglevel: "3"
-
 # sbc-sip configuration
 sbcSip: 
   loglevel: info 
@@ -246,6 +209,44 @@ apiban:
   foreverBlockRanges: "128.90.0.0/16,162.142.125.0/24,198.235.24.0/24,205.210.31.0/24"
   podAnnotations:
 
+# configuration for jambonz-api-server
+api: 
+  image: sptmru/jambonz-api-server-custom:0.31
+  imagePullPolicy: Always
+  httpPort: "3000"
+  replicas: 2
+  podAnnotations:
+  # (required) hostname for the jambonz port ingress
+  hostname: api.jambonz.sptm.space
+  protocol: http
+
+# Feature server configuration
+featureServer: 
+  image: sptmru/drachtio-feature-server-custom:0.49
+  imagePullPolicy: Always
+  httpPort: "3000"
+  drachtioConnection: "127.0.0.1:9022:cymru"
+  freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
+  awsRegion: us-west-1
+  replicas: 3
+  otelSampleRate: 1.0
+  podAnnotations:
+  fsstatusapi:
+    baseUrl: http://fs-status-api:8479/api/v1
+    apiKey: pNubPhzdh3uW9tuoAyjb89FuRq7ZXxapvDs4uKBd2yinA8c7xvZfqn884DH9dgVJNR7UGEBQwcW
+  drachtio:
+    loglevel: info
+    sofiaLoglevel: "3"
+
+# FreeSWITCH configuration
+freeswitch: 
+  image: sptmru/drachtio-freeswitch-mrf-custom:0.8
+  imagePullPolicy: Always
+  args:
+    - freeswitch
+    - --codec-answer-generous
+
+# IVR app configuration
 ivrapp:
   image: sptmru/jambonz-ivr-app:0.38
   imagePullPolicy: Always
@@ -303,8 +304,9 @@ ivrapp:
     baseUrl: https://portal.dialytica.com/api
   dtmfGatherTimeout: 15
 
+# Feature server status API configuration
 fsstatusapi:
-  image: sptmru/jambonz-fs-status-api:0.10
+  image: sptmru/jambonz-fs-status-api:0.12
   imagePullPolicy: Always
   replicas: 1
   podAnnotations:
