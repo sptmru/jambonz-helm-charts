@@ -52,30 +52,6 @@ spec:
         - name: api-server
           image: {{ .Values.api.image }}
           imagePullPolicy: {{ .Values.api.imagePullPolicy }}
-          readinessProbe:
-            httpGet:
-              path: {{ printf "/v1/Applications/%s" (.Values.ivrapp.jambonz.applicationSid) | quote }}
-              port: {{ .Values.api.httpPort }}
-              httpHeaders:
-                - name: Authorization
-                  value: {{ printf "Bearer %s" (.Values.ivrapp.jambonz.apiKey) | quote }}
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 1
-            timeoutSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: {{ printf "/v1/Applications/%s" (.Values.ivrapp.jambonz.applicationSid) | quote }}
-              port: {{ .Values.api.httpPort }}
-              httpHeaders:
-                - name: Authorization
-                  value: {{ printf "Bearer %s" (.Values.ivrapp.jambonz.apiKey) | quote }}
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 1
-            timeoutSeconds: 10
           env:
             - name: NODE_ENV
               value: production
@@ -124,6 +100,10 @@ spec:
             - name: STATS_SAMPLE_RATE
               value:  {{ .Values.stats.sampleRate | quote }}
             {{- end }}
+            - name: FS_STATUS_API
+              value: {{ default "http://fs-status-api:8479/api/v1" .Values.featureServer.fsStatusApi.baseUrl  | quote }}
+            - name: FS_STATUS_API_KEY
+              value: {{ default "" .Values.featureServer.fsStatusApi.apiKey  | quote }}
             - name: JAMBONES_REDIS_HOST
               value: redis.{{ default .Release.Namespace .Values.global.db.namespace }}
             - name: JAMBONES_REDIS_PORT

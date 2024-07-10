@@ -104,9 +104,14 @@ spec:
             preStop:
               exec:
                 command: [
-                  "/bin/sh",
-                  "-c",
-                  "while $(curl --output /dev/null --silent --head --fail-early http://127.0.0.1:3000); do printf '.'; sleep 10; done"
+                  "/bin/sh", "-c",
+                  "/opt/app/bin/k8s-pre-stop-hook.js"
+                ]
+            postStart:
+              exec:
+                command: [
+                  "/bin/sh", "-c",
+                  "/opt/app/bin/k8s-post-start-hook.js"
                 ]
           volumeMounts:
             - mountPath: /tmp 
@@ -163,11 +168,19 @@ spec:
               value: {{ default "0" .Values.stats.enabled  | quote }}
             - name: JAMBONZ_CLEANUP_INTERVAL_MINS
               value: "60"
+            - name: FS_STATUS_API
+              value: {{ default "http://fs-status-api:8479/api/v1" .Values.featureServer.fsStatusApi.baseUrl  | quote }}
+            - name: FS_STATUS_API_KEY
+              value: {{ default "" .Values.featureServer.fsStatusApi.apiKey  | quote }}
             {{- if .Values.stats.enabled }}
             - name: K8S_POD_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
             - name: STATS_HOST
               value: {{ .Values.stats.host }}.{{ default .Release.Namespace .Values.global.monitoring.namespace }}
             - name: STATS_PORT
