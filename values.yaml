@@ -177,7 +177,7 @@ sbcOutbound:
   image: jambonz/sbc-outbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
-  replicas: 4
+  replicas: 20
   podAnnotations:
 
 # sbc-sip-sidecar configuration
@@ -190,7 +190,7 @@ sbcCallRouter:
   image: jambonz/sbc-call-router:0.9.0
   imagePullPolicy: IfNotPresent
   httpPort: "3000"
-  replicas: 2
+  replicas: 4
 
 # sbc-sip configuration
 sbcSip: 
