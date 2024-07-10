@@ -125,7 +125,7 @@ spec:
               exec:
                 command: [
                   "/bin/sh", "-c",
-                  "curl -X DELETE -H 'Authorization: Bearer {{ .Values.featureServer.fsStatusApi.apiKey | quote }}' http://fs-status-api:8479/api/v1/instanceCalls/$(hostname -i) && /opt/app/bin/k8s-pre-stop-hook.js"
+                  "/opt/app/bin/k8s-pre-stop-hook.js"
                 ]
           volumeMounts:
             - mountPath: /tmp 
