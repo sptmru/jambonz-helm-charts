@@ -203,7 +203,7 @@ dbWaiter:
 
 # if you want to block bad sip actors, get an api key from apiban.org and put it below
 apiban: 
-  apiKey: 
+  apiKey: 66f41de7fb855e04d5c925e074837439
   redisKey: "apiban:ips"
   refreshInterval: "3600"
   foreverBlockRanges: "128.90.0.0/16,162.142.125.0/24,198.235.24.0/24,205.210.31.0/24"
@@ -248,7 +248,7 @@ featureServer:
 
 # Feature server status API configuration
 fsstatusapi:
-  image: sptmru/jambonz-fs-status-api:0.12
+  image: sptmru/jambonz-fs-status-api:0.13
   imagePullPolicy: Always
   replicas: 10
   podAnnotations:
