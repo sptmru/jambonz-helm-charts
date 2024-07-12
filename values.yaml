@@ -177,7 +177,7 @@ sbcOutbound:
   image: jambonz/sbc-outbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
-  replicas: 8
+  replicas: 20
   podAnnotations:
 
 # sbc-sip-sidecar configuration
@@ -190,7 +190,7 @@ sbcCallRouter:
   image: jambonz/sbc-call-router:0.9.0
   imagePullPolicy: IfNotPresent
   httpPort: "3000"
-  replicas: 8
+  replicas: 20
 
 # sbc-sip configuration
 sbcSip: 
@@ -211,10 +211,10 @@ apiban:
 
 # Jambonz API server configuration
 api: 
-  image: sptmru/jambonz-api-server-custom:0.32
+  image: sptmru/jambonz-api-server-custom:0.33
   imagePullPolicy: Always
   httpPort: "3000"
-  replicas: 20
+  replicas: 80
   podAnnotations:
   # (required) hostname for the jambonz port ingress
   hostname: api.jambonz.prod.sptm.space
@@ -236,21 +236,21 @@ featureServer:
   drachtioConnection: "127.0.0.1:9022:cymru"
   freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
   awsRegion: us-west-1
-  replicas: 40
+  replicas: 80
   otelSampleRate: 1.0
   podAnnotations:
   fsstatusapi:
     baseUrl: http://fs-status-api:8479/api/v1
     apiKey: pNubPhzdh3uW9tuoAyjb89FuRq7ZXxapvDs4uKBd2yinA8c7xvZfqn884DH9dgVJNR7UGEBQwcW
   drachtio:
-    loglevel: info
+    loglevel: debug
     sofiaLoglevel: "3"
 
 # Feature server status API configuration
 fsstatusapi:
   image: sptmru/jambonz-fs-status-api:0.20
   imagePullPolicy: Always
-  replicas: 10
+  replicas: 20
   podAnnotations:
   logLevel: debug
   loki:
@@ -275,11 +275,11 @@ fsstatusapi:
 
 # IVR app configuration
 ivrapp:
-  image: sptmru/jambonz-ivr-app:0.32
+  image: sptmru/jambonz-ivr-app:0.39
   imagePullPolicy: Always
   replicas: 20
   podAnnotations:
-  logLevel: info
+  logLevel: debug
   sentry:
     dsn: https://c97dd5490468baa0da17b00c21e1d0e1@o1156046.ingest.us.sentry.io/4507078109560832
     tracesSampleRate: 1.0
