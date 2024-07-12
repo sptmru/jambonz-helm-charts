@@ -1,0 +1,43 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: fs-status-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          annotations:
+            {{- if .Values.global.podAnnotations }}
+            {{ toYaml .Values.global.podAnnotations | default "" | nindent 12 }}
+            {{- end }}
+            {{- if .Values.fsstatusapi.cronjob.podAnnotations }}
+            {{ toYaml .Values.fsstatusapi.cronjob.podAnnotations | default "" | nindent 12 }}
+            {{- end }}
+        spec:
+          serviceAccountName: pod-reader-account
+          {{- if .Values.global.affinity }}
+          affinity:
+            {{ toYaml .Values.global.affinity | default "" | nindent 12 }}
+          {{- end }}
+          {{- if .Values.fsstatusapi.cronjob.nodeSelector }}
+          nodeSelector:
+            {{ .Values.fsstatusapi.cronjob.nodeSelector.label }}: {{ .Values.fsstatusapi.cronjob.nodeSelector.value | quote }}      
+          {{- end }}
+          containers:
+          - name: fs-status-cronjob
+            image: {{ .Values.fsstatusapi.cronjob.image }}
+            imagePullPolicy: {{ .Values.fsstatusapi.cronjob.imagePullPolicy }}
+            env:
+            - name: REDIS_URI
+              value: "redis://fs-status-redis.{{ default .Release.Namespace .Values.global.db.namespace }}:6379"
+            - name: REDIS_INSTANCE_SET
+              value: {{ default "instances" .Values.fsstatusapi.redis.instanceSet  | quote }}
+            - name: LOG_LEVEL
+              value: {{ default "info" .Values.fsstatusapi.cronjob.logLevel  | quote }}
+            - name: LOG_TO_FILE
+              value: "false"
+            - name: LOKI_ENABLED
+              value: "false"
+          restartPolicy: Never
