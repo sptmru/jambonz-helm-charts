@@ -66,6 +66,8 @@ spec:
               value: {{ default "instances" .Values.fsstatusapi.redis.instanceSet  | quote }}
             - name: FEATURE_SERVER_MAX_CALLS
               value: {{ default "1200" .Values.fsstatusapi.featureServerMaxCalls  | quote }}
+            - name: FEATURE_SERVER_PORT
+              value: {{ default "3000" .Values.featureServer.httpPort  | quote }}
           ports:
             - containerPort: {{ default "8479" .Values.fsstatusapi.httpPort }}
           resources: {}
