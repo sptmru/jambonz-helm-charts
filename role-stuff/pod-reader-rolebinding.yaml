@@ -6,7 +6,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: pod-reader-account
-  namespace: default
+  namespace: jambonz
 roleRef:
   kind: Role
   name: pod-reader-role
