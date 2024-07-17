@@ -275,7 +275,7 @@ fsstatusapi:
 
 # IVR app configuration
 ivrapp:
-  image: sptmru/jambonz-ivr-app:0.42
+  image: sptmru/jambonz-ivr-app:0.43
   imagePullPolicy: Always
   replicas: 20
   podAnnotations:
@@ -325,6 +325,7 @@ ivrapp:
     user: vos_go
     password: 00923bbc0373c55507b2
     erlangCookie: wZX6t6FFF7RcthD9kCCz6qbnWqwag4
+    heartbeat: 60
   redis:
     jsonType: calldetails
   callStatusApi:

@@ -118,6 +118,8 @@ spec:
               value: {{ default "" .Values.ivrapp.rabbitmq.password  | quote }}
             - name: RABBITMQ_ERLANG_COOKIE
               value: {{ default "" .Values.ivrapp.rabbitmq.erlangCookie  | quote }}
+            - name: RABBITMQ_HEARTBEAT
+              value: {{ default "60" .Values.ivrapp.rabbitmq.heartbeat  | quote }}
             - name: REDIS_URI
               value: "redis://ivrapp-redis.{{ default .Release.Namespace .Values.global.db.namespace }}:6379"
             - name: REDIS_JSON_TYPE
