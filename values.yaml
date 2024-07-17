@@ -211,7 +211,7 @@ apiban:
 
 # Jambonz API server configuration
 api: 
-  image: sptmru/jambonz-api-server-custom:0.33
+  image: sptmru/jambonz-api-server-custom:0.34
   imagePullPolicy: Always
   httpPort: "3000"
   replicas: 80
@@ -230,7 +230,7 @@ freeswitch:
 
 # Feature server configuration
 featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.50
+  image: sptmru/drachtio-feature-server-custom:0.51
   imagePullPolicy: Always
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
@@ -248,7 +248,7 @@ featureServer:
 
 # Feature server status API configuration
 fsstatusapi:
-  image: sptmru/jambonz-fs-status-api:0.20
+  image: sptmru/jambonz-fs-status-api:0.22
   imagePullPolicy: Always
   replicas: 20
   podAnnotations:
@@ -268,14 +268,14 @@ fsstatusapi:
     instanceSet: instances
   featureServerMaxCalls: 1200
   cronjob:
-    image: sptmru/jambonz-fs-status-cronjob:0.20
+    image: sptmru/jambonz-fs-status-cronjob:0.22
     imagePullPolicy: Always
     podAnnotations:
     logLevel: debug
 
 # IVR app configuration
 ivrapp:
-  image: sptmru/jambonz-ivr-app:0.39
+  image: sptmru/jambonz-ivr-app:0.42
   imagePullPolicy: Always
   replicas: 20
   podAnnotations:
