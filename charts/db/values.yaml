@@ -24,7 +24,7 @@ storageClassName:
 affinity:
 
 dbcreate:
-  sipDomain: prod-worker4.dialytica.com
+  sipDomain: sip.test.sptm.space
   baseIvrApiUrl: http://ivr-app:8476/api/v1
   image: sptmru/jambonz-db-create:0.27
   jambonzAccountSid: a012c987-a123-2ccd-bb88-d456e567f678

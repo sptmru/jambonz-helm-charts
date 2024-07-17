@@ -211,18 +211,18 @@ apiban:
 
 # configuration for jambonz-api-server
 api: 
-  image: sptmru/jambonz-api-server-custom:0.31
+  image: sptmru/jambonz-api-server-custom:0.34
   imagePullPolicy: Always
   httpPort: "3000"
   replicas: 2
   podAnnotations:
   # (required) hostname for the jambonz port ingress
-  hostname: api.jambonz.sptm.space
+  hostname: api.test.sptm.space
   protocol: http
 
 # Feature server configuration
 featureServer: 
-  image: sptmru/drachtio-feature-server-custom:0.49
+  image: sptmru/drachtio-feature-server-custom:0.51
   imagePullPolicy: Always
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
@@ -248,11 +248,11 @@ freeswitch:
 
 # IVR app configuration
 ivrapp:
-  image: sptmru/jambonz-ivr-app:0.38
+  image: sptmru/jambonz-ivr-app:0.43
   imagePullPolicy: Always
-  replicas: 2
+  replicas: 0
   podAnnotations:
-  logLevel: info
+  logLevel: debug
   sentry:
     dsn: https://c97dd5490468baa0da17b00c21e1d0e1@o1156046.ingest.us.sentry.io/4507078109560832
     tracesSampleRate: 1.0
@@ -298,6 +298,7 @@ ivrapp:
     user: vos_go
     password: 00923bbc0373c55507b2
     erlangCookie: wZX6t6FFF7RcthD9kCCz6qbnWqwag4
+    heartbeat: 60
   redis:
     jsonType: calldetails
   callStatusApi:
@@ -306,9 +307,9 @@ ivrapp:
 
 # Feature server status API configuration
 fsstatusapi:
-  image: sptmru/jambonz-fs-status-api:0.12
+  image: sptmru/jambonz-fs-status-api:0.22
   imagePullPolicy: Always
-  replicas: 1
+  replicas: 2
   podAnnotations:
   logLevel: debug
   loki:
@@ -325,6 +326,11 @@ fsstatusapi:
   redis:
     instanceSet: instances
   featureServerMaxCalls: 1200
+  cronjob:
+    image: sptmru/jambonz-fs-status-cronjob:0.22
+    imagePullPolicy: Always
+    podAnnotations:
+    logLevel: debug
 
 loki:
   commonConfig:
