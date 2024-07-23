@@ -211,7 +211,7 @@ apiban:
 
 # Jambonz API server configuration
 api: 
-  image: sptmru/jambonz-api-server-custom:0.36
+  image: sptmru/jambonz-api-server-custom:0.39
   imagePullPolicy: Always
   httpPort: "3000"
   replicas: 80
@@ -222,7 +222,7 @@ api:
 
 # FreeSWITCH configuration
 freeswitch: 
-  image: sptmru/drachtio-freeswitch-mrf-custom:0.8
+  image: sptmru/drachtio-freeswitch-mrf-custom:0.9
   imagePullPolicy: Always
   args:
     - freeswitch
@@ -275,7 +275,7 @@ fsstatusapi:
 
 # IVR app configuration
 ivrapp:
-  image: sptmru/jambonz-ivr-app:0.43
+  image: sptmru/jambonz-ivr-app:0.46
   imagePullPolicy: Always
   replicas: 20
   podAnnotations:
