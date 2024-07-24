@@ -4,6 +4,6 @@ metadata:
   namespace: jambonz
   name: pod-reader-role
 rules:
-- apiGroups: [""]
-  resources: ["pods", "endpoints"]
-  verbs: ["get", "list"]
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["pods", "endpoints", "pods/exec"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
