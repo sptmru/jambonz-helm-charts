@@ -24,8 +24,8 @@ storageClassName:
 affinity:
 
 dbcreate:
-  sipDomain: sip.jambonz.airip.co.za
-  baseIvrApiUrl: http://app.jambonz.airip.co.za/api/v1
+  sipDomain: sip.airip.co.za
+  baseIvrApiUrl: http://jambonz-app.airip.co.za/api/v1
   image: sptmru/jambonz-db-create:0.26
   jambonzAccountSid: a812bc1a-b086-ca2d-bb18-a2341b134cca
   jambonzApplicationSid: f935db2e-9183-d25b-cc24-b3415d247fde
