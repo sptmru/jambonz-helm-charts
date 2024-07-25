@@ -1,19 +1,19 @@
 # mysql configuration
-mysql: 
+mysql:
   image: mysql:5.7
-  host: mysql 
+  host: mysql
   database: jambones
-  user: jambones 
+  user: utNwV43e
   storage: 10Gi
   # if empty, an empty password is used for the root user using MYSQL_ALLOW_EMPTY_PASSWORD
-  rootSecret:
-  secret: amFtYm9uZXM=
+  rootSecret: UktNb1h3VXM0cUhkeEhBeWp1N3lINkF6
+  secret: OEZIc0Z5b1hTU1dRN01XNDJnSGFmeDdO
   podAnnotations:
 
 # redis configuration used by Node.js app that need to connect
-redis: 
+redis:
   image: redis:alpine
-  host: redis 
+  host: redis
   port: "6379"
   podAnnotations:
 
@@ -24,12 +24,12 @@ storageClassName:
 affinity:
 
 dbcreate:
-  sipDomain: sip.test.sptm.space
-  baseIvrApiUrl: http://ivr-app:8476/api/v1
-  image: sptmru/jambonz-db-create:0.27
-  jambonzAccountSid: a012c987-a123-2ccd-bb88-d456e567f678
-  jambonzApplicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9
-  jambonzApiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6
+  sipDomain: sip.airip.co.za
+  baseIvrApiUrl: http://app.airip.co.za/api/v1
+  image: sptmru/jambonz-db-create:0.26
+  jambonzAccountSid: a812bc1a-b086-ca2d-bb18-a2341b134cca
+  jambonzApplicationSid: f935db2e-9183-d25b-cc24-b3415d247fde
+  jambonzApiKey: b6f7e1a9-4f63-a21d-ab34-f9876c123eab
 
 fsstatus:
   redis:
