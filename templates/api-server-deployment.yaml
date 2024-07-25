@@ -29,17 +29,17 @@ spec:
       {{- end }}
       {{- if .Values.api.nodeSelector }}
       nodeSelector:
-        {{ .Values.api.nodeSelector.label }}: {{ .Values.api.nodeSelector.value | quote }}      
+        {{ .Values.api.nodeSelector.label }}: {{ .Values.api.nodeSelector.value | quote }}
       {{- end }}
       initContainers:
         - image: kanisterio/mysql-sidecar:0.40.0
           name: db-create-wait
           command:
-            - sh 
-            - -c 
+            - sh
+            - -c
             - |
               until mysql -u {{ .Values.mysql.user }} -D {{ .Values.mysql.database }} -h mysql.{{ default .Release.Namespace .Values.global.db.namespace }} -p${MYSQL_PASSWORD} --protocol=tcp -e "select count(*) from accounts";
-              do 
+              do
                 sleep 5
               done
           env:
@@ -57,13 +57,13 @@ spec:
               value: production
             - name: HTTP_PORT
               value: {{ .Values.api.httpPort | quote }}
-            - name: K8S 
+            - name: K8S
               value: "1"
-            - name: K8S_FEATURE_SERVER_SERVICE_NAME 
+            - name: K8S_FEATURE_SERVER_SERVICE_NAME
               value: feature-server
             - name: JAMBONES_LOGLEVEL
               value: debug
-            - name: JAMBONES_TIME_SERIES_HOST 
+            - name: JAMBONES_TIME_SERIES_HOST
               value: influxdb.{{ default .Release.Namespace .Values.global.monitoring.namespace }}
             - name: JAMBONES_TRUST_PROXY
               value: "2"
@@ -104,6 +104,8 @@ spec:
               value: {{ default "http://fs-status-api:8479/api/v1" .Values.featureServer.fsstatusapi.baseUrl  | quote }}
             - name: FS_STATUS_API_KEY
               value: {{ default "" .Values.featureServer.fsstatusapi.apiKey  | quote }}
+            - name: MAX_CALLS_PER_INSTANCE
+              value: {{ default "1200" .Values.fsstatusapi.featureServerMaxCalls | quote }}
             - name: JAMBONES_REDIS_HOST
               value: redis.{{ default .Release.Namespace .Values.global.db.namespace }}
             - name: JAMBONES_REDIS_PORT
