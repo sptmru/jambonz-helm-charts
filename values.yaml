@@ -154,7 +154,7 @@ webapp:
   podAnnotations:
 
   # (required) hostname for the jambonz port ingress
-  hostname: portal.airip.co.za
+  hostname: portal.jambonz.airip.co.za
 
   # set to true to disable recording in the portal
   disableRecording: false
@@ -217,7 +217,7 @@ api:
   replicas: 1
   podAnnotations:
   # (required) hostname for the jambonz port ingress
-  hostname: api.airip.co.za
+  hostname: api.jambonz.airip.co.za
   protocol: https
 
 # Feature server configuration
@@ -255,7 +255,7 @@ fsstatusapi:
   logLevel: debug
   loki:
     enabled: false
-  hostname: fs-status-api.airip.co.za
+  hostname: fs-status-api.jambonz.airip.co.za
   httpPort: 8479
   apiBasePrefix: /api/v1
   apiAuthToken: mLr5bQw7f9dK3hvjNyxp64FuZq8WTrdPmHv4yJEb2tnzK5r8uGaX2vRCUw3MhGAQysR7UGBQwcW
