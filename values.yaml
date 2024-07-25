@@ -2,7 +2,7 @@ global:
   # if defined, create and/or reference db and monitoring services in the specified namespace;
   # otherwise they create and/or referenced them in whatever the .Release namespace is
   db:
-    namespace: 
+    namespace:
     createNamespace: false
   monitoring:
     namespace:
@@ -24,7 +24,7 @@ global:
       enabled: true
       clusterIssuer: letsencrypt-prod
   cassandra:
-    enabled: true
+    enabled: false
   recordings:
     enabled: false
   track:
@@ -33,52 +33,52 @@ global:
     appCalls: "0"
   affinity:
   podAnnotations:
-    
-db: 
+
+db:
   # if true, create the db subchart
   enabled: true
-  mysql: 
-    secret: amFtYm9uZXM=
-monitoring: 
+  mysql:
+    secret: OEZIc0Z5b1hTU1dRN01XNDJnSGFmeDdO
+monitoring:
   # if true, create the monitoring subchart
-  enabled: true
-  postgres: 
-    secret: amFtYm9uZXM=
+  enabled: false
+  postgres:
+    secret: bnNuU1BrSlQ1UTlhaHRNZVppcUhNNzNv
 
-# (required) name of cloud provider: azure, aws, digitalocean, gcp, or none 
+# (required) name of cloud provider: azure, aws, digitalocean, gcp, or none
 cloud:
 
 # set this to "1" if you are deploying on AWS and you are using IMDSv2
 awsUseIMDSv2:
 
 jwt:
-  secret: Rz11JS05NyNUZmZZZg==
+  secret: WHhiZFB6ZVdudnpHdA==
 
 # basic information that applies to all jambonz Node.js app
-jambonz: 
+jambonz:
   # a short identifier for the cluster, needed if multiple jambonz clusters will share the same redis
-  clusterId: 
+  clusterId:
 
 # these values direct which nodepool the SBC sip and rtp pods will be placed in.
 # these pods have to be in special nodepools that use host network binding due to the nature
 # of sip signaling and the current lack of support for sip in ingress controllers.
 #
 #   Note: if you want to put sip and rtp into a single nodepool (e.g. to save cost on a smaller deployment)
-#   then set both labels below to the same value and both tolerations below to the same value  
+#   then set both labels below to the same value and both tolerations below to the same value
 #   and use those values when creating your single edge-facing nodepool when you spin up the cluster.
 #   (But, for production deployments, separate nodepools are recommended for sip and rtp, and this is the default setup below).
-sbc: 
-  sip: 
-    nodeSelector: 
-      label: voip-environment 
+sbc:
+  sip:
+    nodeSelector:
+      label: voip-environment
       value: sip
     toleration: sip
     podAnnotations:
     ssl:
       enabled: false
-  rtp: 
-    nodeSelector: 
-      label: voip-environment 
+  rtp:
+    nodeSelector:
+      label: voip-environment
       value: rtp
     toleration: rtp
     podAnnotations:
@@ -96,16 +96,16 @@ sbc:
       replicas: 1
 
 # information used by the Node.js apps to write statsd to a telegraf listening instance
-stats: 
-  enabled: "1"
+stats:
+  enabled: "0"
   host: telegraf
   port: "8125"
-  protocol: tcp 
+  protocol: tcp
   telegraf: "1"
   sampleRate: "1"
 
 # configuration information for rtpengine
-rtpengine: 
+rtpengine:
   image: jambonz/rtpengine:0.1.9
   imagePullPolicy: IfNotPresent
   sidecarImage: jambonz/rtpengine-sidecar:0.8.5
@@ -121,7 +121,7 @@ rtpengine:
     storage: 10Gi
 
 # used by sidecar apps in sbc-sip and feature-server to connect locally to drachtio server
-drachtio: 
+drachtio:
   image: drachtio/drachtio-server:0.8.25
   imagePullPolicy: IfNotPresent
   host: "127.0.0.1"
@@ -130,54 +130,54 @@ drachtio:
   secret: Y3ltcnU=
 
 # mysql configuration used by Node.js app that need to connect
-mysql: 
+mysql:
   image: mysql:5.7
-  host: mysql 
+  host: mysql
   database: jambones
-  user: jambones 
+  user: jambones
   # used when the rtp is in StatefulSet mode (sbc.rtp.statefulset.enabled is true)
   storage: 10Gi
   podAnnotations:
 
 # redis configuration used by Node.js app that need to connect
-redis: 
+redis:
   image: redis:alpine
-  host: redis 
+  host: redis
   port: "6379"
   podAnnotations:
 
 # jambonz-webapp configuration
-webapp: 
+webapp:
   image: jambonz/webapp:0.8.5
   imagePullPolicy: IfNotPresent
   replicas: 1
   podAnnotations:
-  
+
   # (required) hostname for the jambonz port ingress
-  hostname: webapp.jambonz.sptm.space
+  hostname: portal.airip.co.za
 
   # set to true to disable recording in the portal
-  disableRecording: false 
+  disableRecording: false
 
-# 
+#
 smpp:
   image: jambonz/smpp-esme:0.8.5
   imagePullPolicy: IfNotPresent
 
 # sbc-inbound configuration
-sbcInbound: 
+sbcInbound:
   image: jambonz/sbc-inbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
-  replicas: 2
+  replicas: 1
   podAnnotations:
 
 # sbc-outbound configuration
-sbcOutbound: 
+sbcOutbound:
   image: jambonz/sbc-outbound:0.9.0
   imagePullPolicy: IfNotPresent
   drachtioPort: "4000"
-  replicas: 2
+  replicas: 1
   podAnnotations:
 
 # sbc-sip-sidecar configuration
@@ -186,15 +186,15 @@ sbcSipSidecar:
   imagePullPolicy: IfNotPresent
 
 # sbc-call-router configuration
-sbcCallRouter: 
+sbcCallRouter:
   image: jambonz/sbc-call-router:0.9.0
   imagePullPolicy: IfNotPresent
   httpPort: "3000"
-  replicas: 2
+  replicas: 1
 
 # sbc-sip configuration
-sbcSip: 
-  loglevel: info 
+sbcSip:
+  loglevel: info
   sofiaLoglevel: "3"
 
 # sidecar to wait for database up
@@ -202,152 +202,68 @@ dbWaiter:
   image: d3fk/kubectl:v1.18
 
 # if you want to block bad sip actors, get an api key from apiban.org and put it below
-apiban: 
-  apiKey: 
+apiban:
+  apiKey:
   redisKey: "apiban:ips"
   refreshInterval: "3600"
   foreverBlockRanges: "128.90.0.0/16,162.142.125.0/24,198.235.24.0/24,205.210.31.0/24"
   podAnnotations:
 
 # configuration for jambonz-api-server
-api: 
-  image: sptmru/jambonz-api-server-custom:0.34
-  imagePullPolicy: Always
+api:
+  image: sptmru/jambonz-api-server-custom:0.39
+  imagePullPolicy: IfNotPresent
   httpPort: "3000"
-  replicas: 2
+  replicas: 1
   podAnnotations:
   # (required) hostname for the jambonz port ingress
-  hostname: api.test.sptm.space
-  protocol: http
+  hostname: api.airip.co.za
+  protocol: https
 
 # Feature server configuration
-featureServer: 
+featureServer:
   image: sptmru/drachtio-feature-server-custom:0.51
-  imagePullPolicy: Always
+  imagePullPolicy: IfNotPresent
   httpPort: "3000"
   drachtioConnection: "127.0.0.1:9022:cymru"
   freeswitchConnection: "127.0.0.1:8021:JambonzR0ck$"
   awsRegion: us-west-1
-  replicas: 3
+  replicas: 1
   otelSampleRate: 1.0
   podAnnotations:
   fsstatusapi:
     baseUrl: http://fs-status-api:8479/api/v1
-    apiKey: pNubPhzdh3uW9tuoAyjb89FuRq7ZXxapvDs4uKBd2yinA8c7xvZfqn884DH9dgVJNR7UGEBQwcW
+    apiKey: mLr5bQw7f9dK3hvjNyxp64FuZq8WTrdPmHv4yJEb2tnzK5r8uGaX2vRCUw3MhGAQysR7UGBQwcW
   drachtio:
     loglevel: info
     sofiaLoglevel: "3"
 
 # FreeSWITCH configuration
-freeswitch: 
-  image: sptmru/drachtio-freeswitch-mrf-custom:0.8
-  imagePullPolicy: Always
+freeswitch:
+  image: sptmru/drachtio-freeswitch-mrf-custom:0.12
+  imagePullPolicy: IfNotPresent
   args:
     - freeswitch
     - --codec-answer-generous
 
-# IVR app configuration
-ivrapp:
-  image: sptmru/jambonz-ivr-app:0.43
-  imagePullPolicy: Always
-  replicas: 0
-  podAnnotations:
-  logLevel: debug
-  sentry:
-    dsn: https://c97dd5490468baa0da17b00c21e1d0e1@o1156046.ingest.us.sentry.io/4507078109560832
-    tracesSampleRate: 1.0
-    profilesSampleRate: 1.0
-    logLevel: error
-    authToken: 09b138334ba4048d7f864c383e823be5c7258b455ccac586cd259b8369f0310b
-  loki:
-    enabled: true
-    endpoint: http://loki-gateway.jambonz.svc.cluster.local
-    jobLabel: ivr-app
-    json: true
-    interval: 5
-    timeout: 10000
-  ws:
-    hostname: ws.ivrapp.test.sptm.space
-    port: 8081
-    enabled: true
-    ivrEndpoint: /ivr
-  hostname: ivrapp.test.sptm.space
-  httpPort: 8476
-  wsPort: 8081
-  apiBasePrefix: /api/v1
-  apiAuthToken: agNUL59NL3prrNuLHbQfK9zuux98crULZX9dgsGioYYGAnSZQHqC7JzKmdmDjco3akLaPnDpuGp
-  jambonz:
-    accountSid: a012c987-a123-2ccd-bb88-d456e567f678
-    applicationSid: 55123cc2-3456-4d56-88ac-2aa4f0fd93a9
-    apiKey: 3d9108c8-166e-4473-bebd-8a99e94a12a6
-    baseUrl: http://api-server:3000
-    callbackBaseUrl: http://ivr-app:8476
-    sipRealm: sip.test.sptm.space
-    amd:
-      thresholdWordCount: 4
-      noSpeechTimeout: 5000
-      decisionTimeout: 40000
-      toneTimeout: 40000
-      greetingCompletionTimeout: 2000
-  rabbitmq:
-    uri: amqp://vos_go:00923bbc0373c55507b2@rmq.dialytica.com:5673
-    callsQueue: calls_queue
-    callStatusQueue: call_status_queue
-    prefetchCount: 10
-    reconnectTimeout: 5000
-    user: vos_go
-    password: 00923bbc0373c55507b2
-    erlangCookie: wZX6t6FFF7RcthD9kCCz6qbnWqwag4
-    heartbeat: 60
-  redis:
-    jsonType: calldetails
-  callStatusApi:
-    baseUrl: https://portal.dialytica.com/api
-  dtmfGatherTimeout: 15
-
 # Feature server status API configuration
 fsstatusapi:
-  image: sptmru/jambonz-fs-status-api:0.22
-  imagePullPolicy: Always
-  replicas: 2
+  image: sptmru/jambonz-fs-status-api:0.27
+  imagePullPolicy: IfNotPresent
+  replicas: 1
   podAnnotations:
   logLevel: debug
   loki:
-    enabled: true
-    endpoint: http://loki-gateway.jambonz.svc.cluster.local
-    jobLabel: fs-status-api
-    json: true
-    interval: 5
-    timeout: 10000
-  hostname: fs-status-api.jambonz.test.sptm.space
+    enabled: false
+  hostname: fs-status-api.airip.co.za
   httpPort: 8479
   apiBasePrefix: /api/v1
-  apiAuthToken: pNubPhzdh3uW9tuoAyjb89FuRq7ZXxapvDs4uKBd2yinA8c7xvZfqn884DH9dgVJNR7UGEBQwcW
+  apiAuthToken: mLr5bQw7f9dK3hvjNyxp64FuZq8WTrdPmHv4yJEb2tnzK5r8uGaX2vRCUw3MhGAQysR7UGBQwcW
   redis:
     instanceSet: instances
   featureServerMaxCalls: 1200
   cronjob:
-    image: sptmru/jambonz-fs-status-cronjob:0.22
-    imagePullPolicy: Always
+    image: sptmru/jambonz-fs-status-cronjob:0.27
+    imagePullPolicy: IfNotPresent
     podAnnotations:
     logLevel: debug
-
-loki:
-  commonConfig:
-    replication_factor: 1
-  storage:
-    type: 'filesystem'
-  schemaConfig:
-    configs:
-    - from: "2024-01-01"
-      store: tsdb
-      index:
-        prefix: loki_index_
-        period: 24h
-      object_store: filesystem # we're storing on filesystem so there's no real persistence here.
-      schema: v13
-  table_manager:
-    retention_deletes_enabled: true
-    retention_period: 168h
-    retention_policy: 168h
-  auth_enabled: false
