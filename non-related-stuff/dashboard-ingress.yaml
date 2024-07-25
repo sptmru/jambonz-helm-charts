@@ -11,10 +11,10 @@ spec:
   ingressClassName: public
   tls:
     - hosts:
-        - dashboard.k8s.sptm.space
-      secretName: dashboard-k8s-sptm-space-tls
+        - k8s.airip.co.za
+      secretName: k8s-airip-co-za-tls
   rules:
-    - host: dashboard.k8s.sptm.space
+    - host: k8s.airip.co.za
       http:
         paths:
         - path: /
